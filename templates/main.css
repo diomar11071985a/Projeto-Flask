@@ -1,0 +1,49 @@
+body {
+  width: 60%;
+  margin: auto;  
+  font-family:sans-serif;
+  font-size: 50;
+  background: black;
+  color: white;
+}
+.generica {
+  font-size: 20px;
+  color: lightskyblue;
+  background: black;
+
+}
+h1{
+  font-size: 40px;
+  color: Salmon;
+}
+h3{
+  font-size: 20px;
+  color: lightskyblue;
+}
+
+h4{
+  font-size: 20px;
+  color: lightskyblue;
+font-family: inherit;
+}
+
+h2{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: lightskyblue;
+}
+
+
+h5{
+  font-size: 20px;
+  color: rgb(173, 250, 250); 
+}
+
+h6{
+  font-size: 20px;
+  color: aqua;
+}
+
+h7{
+  font-size: 20px;
+  color: cadetblue;
+}
