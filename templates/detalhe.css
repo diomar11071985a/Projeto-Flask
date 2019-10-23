@@ -1,0 +1,21 @@
+body{
+    background-color: white;
+    background-image: url(img.jpg);
+}
+h1{
+    font-size:20px;
+    color:white;
+    text-align:left;
+
+}
+p{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    background: #363636;
+    }
+.generica{
+    font-size:35px;
+    color: white;
+    font-family: "Lucida"
+}
