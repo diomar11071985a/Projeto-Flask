@@ -56,6 +56,7 @@ proc ::history {args} {
     tailcall apply {arglist {tailcall history {*}$arglist} ::tcl} $args
 }
 
+<<<<<<< HEAD
 # (unnamed) --
 #
 #	Callback when [::history] is destroyed. Destroys the implementation.
@@ -80,6 +81,8 @@ trace add command ::history delete [list apply {{oldName newName op} {
     rename ::tcl::history {}
 } ::tcl}]
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 # tcl::HistAdd --
 #
 #	Add an item to the history, and optionally eval it at the global scope

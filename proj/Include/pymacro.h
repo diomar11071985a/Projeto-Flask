@@ -53,7 +53,11 @@
 
    Requires at GCC 3.1+ */
 #if (defined(__GNUC__) && !defined(__STRICT_ANSI__) && \
+<<<<<<< HEAD
     (((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)) || (__GNUC__ >= 4)))
+=======
+    (((__GNUC__ == 3) && (__GNU_MINOR__ >= 1)) || (__GNUC__ >= 4)))
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Two gcc extensions.
    &a[0] degrades to a pointer: a different type from an array */
 #define Py_ARRAY_LENGTH(array) \
@@ -95,6 +99,9 @@
 #define Py_UNUSED(name) _unused_ ## name
 #endif
 
+<<<<<<< HEAD
 #define Py_UNREACHABLE() abort()
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif /* Py_PYMACRO_H */

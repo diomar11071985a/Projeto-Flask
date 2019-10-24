@@ -7,6 +7,7 @@ extern "C" {
 
 /* Interface to random parts in ceval.c */
 
+<<<<<<< HEAD
 /* PyEval_CallObjectWithKeywords(), PyEval_CallObject(), PyEval_CallFunction
  * and PyEval_CallMethod are kept for backward compatibility: PyObject_Call(),
  * PyObject_CallFunction() and PyObject_CallMethod() are recommended to call
@@ -26,13 +27,29 @@ PyAPI_FUNC(PyObject *) PyEval_CallFunction(PyObject *callable,
                                            const char *format, ...);
 PyAPI_FUNC(PyObject *) PyEval_CallMethod(PyObject *obj,
                                          const char *name,
+=======
+PyAPI_FUNC(PyObject *) PyEval_CallObjectWithKeywords(
+    PyObject *func, PyObject *args, PyObject *kwargs);
+
+/* Inline this */
+#define PyEval_CallObject(func,arg) \
+    PyEval_CallObjectWithKeywords(func, arg, (PyObject *)NULL)
+
+PyAPI_FUNC(PyObject *) PyEval_CallFunction(PyObject *obj,
+                                           const char *format, ...);
+PyAPI_FUNC(PyObject *) PyEval_CallMethod(PyObject *obj,
+                                         const char *methodname,
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
                                          const char *format, ...);
 
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(void) PyEval_SetProfile(Py_tracefunc, PyObject *);
 PyAPI_FUNC(void) PyEval_SetTrace(Py_tracefunc, PyObject *);
+<<<<<<< HEAD
 PyAPI_FUNC(void) _PyEval_SetCoroutineOriginTrackingDepth(int new_depth);
 PyAPI_FUNC(int) _PyEval_GetCoroutineOriginTrackingDepth(void);
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(void) _PyEval_SetCoroutineWrapper(PyObject *);
 PyAPI_FUNC(PyObject *) _PyEval_GetCoroutineWrapper(void);
 PyAPI_FUNC(void) _PyEval_SetAsyncGenFirstiter(PyObject *);
@@ -48,17 +65,27 @@ PyAPI_FUNC(PyObject *) PyEval_GetGlobals(void);
 PyAPI_FUNC(PyObject *) PyEval_GetLocals(void);
 PyAPI_FUNC(struct _frame *) PyEval_GetFrame(void);
 
+<<<<<<< HEAD
 #ifndef Py_LIMITED_API
 /* Helper to look up a builtin object */
 PyAPI_FUNC(PyObject *) _PyEval_GetBuiltinId(_Py_Identifier *);
 /* Look at the current frame's (if any) code's co_flags, and turn on
    the corresponding compiler flags in cf->cf_flags.  Return 1 if any
    flag was set, else return 0. */
+=======
+/* Look at the current frame's (if any) code's co_flags, and turn on
+   the corresponding compiler flags in cf->cf_flags.  Return 1 if any
+   flag was set, else return 0. */
+#ifndef Py_LIMITED_API
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(int) PyEval_MergeCompilerFlags(PyCompilerFlags *cf);
 #endif
 
 PyAPI_FUNC(int) Py_AddPendingCall(int (*func)(void *), void *arg);
+<<<<<<< HEAD
 PyAPI_FUNC(void) _PyEval_SignalReceived(void);
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(int) Py_MakePendingCalls(void);
 
 /* Protection against deeply nested recursive calls
@@ -97,6 +124,7 @@ PyAPI_FUNC(int) Py_GetRecursionLimit(void);
       PyThreadState_GET()->overflowed = 0;  \
     } while(0)
 PyAPI_FUNC(int) _Py_CheckRecursiveCall(const char *where);
+<<<<<<< HEAD
 
 /* Due to the macros in which it's used, _Py_CheckRecursionLimit is in
    the stable ABI.  It should be removed therefrom when possible.
@@ -110,6 +138,18 @@ PyAPI_DATA(int) _Py_CheckRecursionLimit;
 #  define _Py_MakeRecCheck(x)  \
     (++(x) > _Py_CheckRecursionLimit || \
      ++(PyThreadState_GET()->stackcheck_counter) > 64)
+=======
+PyAPI_DATA(int) _Py_CheckRecursionLimit;
+
+#ifdef USE_STACKCHECK
+/* With USE_STACKCHECK, we artificially decrement the recursion limit in order
+   to trigger regular stack checks in _Py_CheckRecursiveCall(), except if
+   the "overflowed" flag is set, in which case we need the true value
+   of _Py_CheckRecursionLimit for _Py_MakeEndRecCheck() to function properly.
+*/
+#  define _Py_MakeRecCheck(x)  \
+    (++(x) > (_Py_CheckRecursionLimit += PyThreadState_GET()->overflowed - 1))
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #else
 #  define _Py_MakeRecCheck(x)  (++(x) > _Py_CheckRecursionLimit)
 #endif
@@ -136,6 +176,10 @@ PyAPI_DATA(int) _Py_CheckRecursionLimit;
 PyAPI_FUNC(const char *) PyEval_GetFuncName(PyObject *);
 PyAPI_FUNC(const char *) PyEval_GetFuncDesc(PyObject *);
 
+<<<<<<< HEAD
+=======
+PyAPI_FUNC(PyObject *) PyEval_GetCallStats(PyObject *);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(PyObject *) PyEval_EvalFrame(struct _frame *);
 PyAPI_FUNC(PyObject *) PyEval_EvalFrameEx(struct _frame *f, int exc);
 #ifndef Py_LIMITED_API
@@ -161,7 +205,11 @@ PyAPI_FUNC(PyObject *) _PyEval_EvalFrameDefault(struct _frame *f, int exc);
 
     if (...premature_exit...) {
         Py_BLOCK_THREADS
+<<<<<<< HEAD
         PyErr_SetFromErrno(PyExc_OSError);
+=======
+        PyErr_SetFromErrno(PyExc_IOError);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
         return NULL;
     }
 
@@ -169,7 +217,11 @@ PyAPI_FUNC(PyObject *) _PyEval_EvalFrameDefault(struct _frame *f, int exc);
 
     Py_BLOCK_THREADS
     if (...premature_exit...) {
+<<<<<<< HEAD
         PyErr_SetFromErrno(PyExc_OSError);
+=======
+        PyErr_SetFromErrno(PyExc_IOError);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
         return NULL;
     }
     Py_UNBLOCK_THREADS
@@ -190,13 +242,23 @@ PyAPI_FUNC(PyObject *) _PyEval_EvalFrameDefault(struct _frame *f, int exc);
 PyAPI_FUNC(PyThreadState *) PyEval_SaveThread(void);
 PyAPI_FUNC(void) PyEval_RestoreThread(PyThreadState *);
 
+<<<<<<< HEAD
+=======
+#ifdef WITH_THREAD
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(int)  PyEval_ThreadsInitialized(void);
 PyAPI_FUNC(void) PyEval_InitThreads(void);
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(void) _PyEval_FiniThreads(void);
 #endif /* !Py_LIMITED_API */
+<<<<<<< HEAD
 PyAPI_FUNC(void) PyEval_AcquireLock(void) Py_DEPRECATED(3.2);
 PyAPI_FUNC(void) PyEval_ReleaseLock(void) /* Py_DEPRECATED(3.2) */;
+=======
+PyAPI_FUNC(void) PyEval_AcquireLock(void);
+PyAPI_FUNC(void) PyEval_ReleaseLock(void);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(void) PyEval_AcquireThread(PyThreadState *tstate);
 PyAPI_FUNC(void) PyEval_ReleaseThread(PyThreadState *tstate);
 PyAPI_FUNC(void) PyEval_ReInitThreads(void);
@@ -218,6 +280,18 @@ PyAPI_FUNC(Py_ssize_t) _PyEval_RequestCodeExtraIndex(freefunc);
 #define Py_END_ALLOW_THREADS    PyEval_RestoreThread(_save); \
                  }
 
+<<<<<<< HEAD
+=======
+#else /* !WITH_THREAD */
+
+#define Py_BEGIN_ALLOW_THREADS {
+#define Py_BLOCK_THREADS
+#define Py_UNBLOCK_THREADS
+#define Py_END_ALLOW_THREADS }
+
+#endif /* !WITH_THREAD */
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(int) _PyEval_SliceIndex(PyObject *, Py_ssize_t *);
 PyAPI_FUNC(int) _PyEval_SliceIndexNotNone(PyObject *, Py_ssize_t *);

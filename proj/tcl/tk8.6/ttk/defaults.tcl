@@ -5,6 +5,7 @@
 namespace eval ttk::theme::default {
     variable colors
     array set colors {
+<<<<<<< HEAD
 	-frame			"#d9d9d9"
 	-foreground		"#000000"
 	-window			"#ffffff"
@@ -18,6 +19,18 @@ namespace eval ttk::theme::default {
 	-disabledindicator	"#a3a3a3"
 	-altindicator		"#9fbdd8"
 	-disabledaltindicator	"#c0c0c0"
+=======
+	-frame		"#d9d9d9"
+	-foreground	"#000000"
+	-window		"#ffffff"
+	-text   	"#000000"
+	-activebg	"#ececec"
+	-selectbg	"#4a6984"
+	-selectfg	"#ffffff"
+	-darker 	"#c3c3c3"
+	-disabledfg	"#a3a3a3"
+	-indicator	"#4a6984"
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     }
 
     ttk::style theme settings default {
@@ -48,6 +61,7 @@ namespace eval ttk::theme::default {
 	ttk::style configure TCheckbutton \
 	    -indicatorcolor "#ffffff" -indicatorrelief sunken -padding 1
 	ttk::style map TCheckbutton -indicatorcolor \
+<<<<<<< HEAD
 	    [list pressed $colors(-activebg)  \
 			{!disabled alternate} $colors(-altindicator) \
 			{disabled alternate} $colors(-disabledaltindicator) \
@@ -55,10 +69,14 @@ namespace eval ttk::theme::default {
 			{disabled selected} $colors(-disabledindicator)]
 	ttk::style map TCheckbutton -indicatorrelief \
 	    [list alternate raised]
+=======
+	    [list pressed $colors(-activebg)  selected $colors(-indicator)]
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 	ttk::style configure TRadiobutton \
 	    -indicatorcolor "#ffffff" -indicatorrelief sunken -padding 1
 	ttk::style map TRadiobutton -indicatorcolor \
+<<<<<<< HEAD
 	    [list pressed $colors(-activebg)  \
 			{!disabled alternate} $colors(-altindicator) \
 			{disabled alternate} $colors(-disabledaltindicator) \
@@ -66,6 +84,9 @@ namespace eval ttk::theme::default {
 			{disabled selected} $colors(-disabledindicator)]
 	ttk::style map TRadiobutton -indicatorrelief \
 	    [list alternate raised]
+=======
+	    [list pressed $colors(-activebg)  selected $colors(-indicator)]
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 	ttk::style configure TMenubutton \
 	    -relief raised -padding "10 3"
@@ -77,8 +98,12 @@ namespace eval ttk::theme::default {
 
 	ttk::style configure TCombobox -arrowsize 12 -padding 1
 	ttk::style map TCombobox -fieldbackground \
+<<<<<<< HEAD
 	    [list readonly $colors(-frame) disabled $colors(-frame)] \
 	    -arrowcolor [list disabled $colors(-disabledfg)]
+=======
+	    [list readonly $colors(-frame) disabled $colors(-frame)]
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 	ttk::style configure TSpinbox -arrowsize 10 -padding {2 0 10 0}
 	ttk::style map TSpinbox -fieldbackground \
@@ -110,12 +135,17 @@ namespace eval ttk::theme::default {
 	    -background $colors(-window) \
 	    -foreground $colors(-text) ;
 	ttk::style map Treeview \
+<<<<<<< HEAD
 	    -background [list disabled $colors(-frame)\
 				{!disabled !selected} $colors(-window) \
 				selected $colors(-selectbg)] \
 	    -foreground [list disabled $colors(-disabledfg) \
 				{!disabled !selected} black \
 				selected $colors(-selectfg)]
+=======
+	    -background [list selected $colors(-selectbg)] \
+	    -foreground [list selected $colors(-selectfg)] ;
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 	# Combobox popdown frame
 	ttk::style layout ComboboxPopdownFrame {

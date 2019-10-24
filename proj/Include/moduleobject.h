@@ -25,7 +25,11 @@ PyAPI_FUNC(PyObject *) PyModule_GetDict(PyObject *);
 PyAPI_FUNC(PyObject *) PyModule_GetNameObject(PyObject *);
 #endif
 PyAPI_FUNC(const char *) PyModule_GetName(PyObject *);
+<<<<<<< HEAD
 PyAPI_FUNC(const char *) PyModule_GetFilename(PyObject *) Py_DEPRECATED(3.2);
+=======
+PyAPI_FUNC(const char *) PyModule_GetFilename(PyObject *);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(PyObject *) PyModule_GetFilenameObject(PyObject *);
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(void) _PyModule_Clear(PyObject *);

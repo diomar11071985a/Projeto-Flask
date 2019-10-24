@@ -37,11 +37,14 @@ PyAPI_FUNC(PyObject *) PySys_GetXOptions(void);
 PyAPI_FUNC(size_t) _PySys_GetSizeOf(PyObject *);
 #endif
 
+<<<<<<< HEAD
 #ifdef Py_BUILD_CORE
 PyAPI_FUNC(int) _PySys_AddXOptionWithError(const wchar_t *s);
 PyAPI_FUNC(int) _PySys_AddWarnOptionWithError(PyObject *option);
 #endif
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef __cplusplus
 }
 #endif

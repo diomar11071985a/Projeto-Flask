@@ -120,7 +120,11 @@ proc ttk::treeview::ActivateHeading {w heading} {
     variable State
 
     if {$w != $State(activeWidget) || $heading != $State(activeHeading)} {
+<<<<<<< HEAD
 	if {[winfo exists $State(activeWidget)] && $State(activeHeading) != {}} {
+=======
+	if {$State(activeHeading) != {}} {
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    $State(activeWidget) heading $State(activeHeading) state !active
 	}
 	if {$heading != {}} {

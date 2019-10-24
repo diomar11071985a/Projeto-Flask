@@ -10,12 +10,15 @@
 #include <stdatomic.h>
 #endif
 
+<<<<<<< HEAD
 
 #if defined(_MSC_VER)
 #include <intrin.h>
 #include <immintrin.h>
 #endif
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* This is modeled after the atomics interface from C1x, according to
  * the draft at
  * http://www.open-std.org/JTC1/SC22/wg14/www/docs/n1425.pdf.
@@ -93,9 +96,14 @@ typedef struct _Py_atomic_int {
             || (ORDER) == __ATOMIC_CONSUME),                  \
      __atomic_load_n(&(ATOMIC_VAL)->_value, ORDER))
 
+<<<<<<< HEAD
 /* Only support GCC (for expression statements) and x86 (for simple
  * atomic semantics) and MSVC x86/x64/ARM */
 #elif defined(__GNUC__) && (defined(__i386__) || defined(__amd64))
+=======
+#else
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 typedef enum _Py_memory_order {
     _Py_memory_order_relaxed,
     _Py_memory_order_acquire,
@@ -112,6 +120,12 @@ typedef struct _Py_atomic_int {
     int _value;
 } _Py_atomic_int;
 
+<<<<<<< HEAD
+=======
+/* Only support GCC (for expression statements) and x86 (for simple
+ * atomic semantics) for now */
+#if defined(__GNUC__) && (defined(__i386__) || defined(__amd64))
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 static __inline__ void
 _Py_atomic_signal_fence(_Py_memory_order order)
@@ -131,7 +145,11 @@ _Py_atomic_thread_fence(_Py_memory_order order)
 static __inline__ void
 _Py_ANNOTATE_MEMORY_ORDER(const volatile void *address, _Py_memory_order order)
 {
+<<<<<<< HEAD
     (void)address;              /* shut up -Wunused-parameter */
+=======
+    (void)address;		/* shut up -Wunused-parameter */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     switch(order) {
     case _Py_memory_order_release:
     case _Py_memory_order_acq_rel:
@@ -223,6 +241,7 @@ _Py_ANNOTATE_MEMORY_ORDER(const volatile void *address, _Py_memory_order order)
         result; \
     })
 
+<<<<<<< HEAD
 #elif defined(_MSC_VER)
 /*  _Interlocked* functions provide a full memory barrier and are therefore
     enough for acq_rel and seq_cst. If the HLE variants aren't available
@@ -508,6 +527,9 @@ typedef struct _Py_atomic_address {
 typedef struct _Py_atomic_int {
     int _value;
 } _Py_atomic_int;
+=======
+#else  /* !gcc x86 */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Fall back to other compilers and processors by assuming that simple
    volatile accesses are atomic.  This is false, so people should port
    this. */
@@ -517,6 +539,11 @@ typedef struct _Py_atomic_int {
     ((ATOMIC_VAL)->_value = NEW_VAL)
 #define _Py_atomic_load_explicit(ATOMIC_VAL, ORDER) \
     ((ATOMIC_VAL)->_value)
+<<<<<<< HEAD
+=======
+
+#endif  /* !gcc x86 */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif
 
 /* Standardized shortcuts. */
@@ -531,5 +558,9 @@ typedef struct _Py_atomic_int {
     _Py_atomic_store_explicit(ATOMIC_VAL, NEW_VAL, _Py_memory_order_relaxed)
 #define _Py_atomic_load_relaxed(ATOMIC_VAL) \
     _Py_atomic_load_explicit(ATOMIC_VAL, _Py_memory_order_relaxed)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif  /* Py_BUILD_CORE */
 #endif  /* Py_ATOMIC_H */

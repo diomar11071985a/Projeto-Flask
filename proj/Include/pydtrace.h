@@ -29,13 +29,20 @@ static inline void PyDTrace_LINE(const char *arg0, const char *arg1, int arg2) {
 static inline void PyDTrace_FUNCTION_ENTRY(const char *arg0, const char *arg1, int arg2)  {}
 static inline void PyDTrace_FUNCTION_RETURN(const char *arg0, const char *arg1, int arg2) {}
 static inline void PyDTrace_GC_START(int arg0) {}
+<<<<<<< HEAD
 static inline void PyDTrace_GC_DONE(Py_ssize_t arg0) {}
+=======
+static inline void PyDTrace_GC_DONE(int arg0) {}
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 static inline void PyDTrace_INSTANCE_NEW_START(int arg0) {}
 static inline void PyDTrace_INSTANCE_NEW_DONE(int arg0) {}
 static inline void PyDTrace_INSTANCE_DELETE_START(int arg0) {}
 static inline void PyDTrace_INSTANCE_DELETE_DONE(int arg0) {}
+<<<<<<< HEAD
 static inline void PyDTrace_IMPORT_FIND_LOAD_START(const char *arg0) {}
 static inline void PyDTrace_IMPORT_FIND_LOAD_DONE(const char *arg0, int arg1) {}
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 static inline int PyDTrace_LINE_ENABLED(void) { return 0; }
 static inline int PyDTrace_FUNCTION_ENTRY_ENABLED(void) { return 0; }
@@ -46,8 +53,11 @@ static inline int PyDTrace_INSTANCE_NEW_START_ENABLED(void) { return 0; }
 static inline int PyDTrace_INSTANCE_NEW_DONE_ENABLED(void) { return 0; }
 static inline int PyDTrace_INSTANCE_DELETE_START_ENABLED(void) { return 0; }
 static inline int PyDTrace_INSTANCE_DELETE_DONE_ENABLED(void) { return 0; }
+<<<<<<< HEAD
 static inline int PyDTrace_IMPORT_FIND_LOAD_START_ENABLED(void) { return 0; }
 static inline int PyDTrace_IMPORT_FIND_LOAD_DONE_ENABLED(void) { return 0; }
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 #endif /* !WITH_DTRACE */
 

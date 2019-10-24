@@ -17,6 +17,7 @@ typedef enum PyLockStatus {
     PY_LOCK_INTR
 } PyLockStatus;
 
+<<<<<<< HEAD
 #ifndef Py_LIMITED_API
 #define PYTHREAD_INVALID_THREAD_ID ((unsigned long)-1)
 #endif
@@ -25,12 +26,23 @@ PyAPI_FUNC(void) PyThread_init_thread(void);
 PyAPI_FUNC(unsigned long) PyThread_start_new_thread(void (*)(void *), void *);
 PyAPI_FUNC(void) PyThread_exit_thread(void);
 PyAPI_FUNC(unsigned long) PyThread_get_thread_ident(void);
+=======
+PyAPI_FUNC(void) PyThread_init_thread(void);
+PyAPI_FUNC(long) PyThread_start_new_thread(void (*)(void *), void *);
+PyAPI_FUNC(void) PyThread_exit_thread(void);
+PyAPI_FUNC(long) PyThread_get_thread_ident(void);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 PyAPI_FUNC(PyThread_type_lock) PyThread_allocate_lock(void);
 PyAPI_FUNC(void) PyThread_free_lock(PyThread_type_lock);
 PyAPI_FUNC(int) PyThread_acquire_lock(PyThread_type_lock, int);
+<<<<<<< HEAD
 #define WAIT_LOCK       1
 #define NOWAIT_LOCK     0
+=======
+#define WAIT_LOCK	1
+#define NOWAIT_LOCK	0
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* PY_TIMEOUT_T is the integral type used to specify timeouts when waiting
    on a lock (see PyThread_acquire_lock_timed() below).
@@ -42,6 +54,7 @@ PyAPI_FUNC(int) PyThread_acquire_lock(PyThread_type_lock, int);
    and floating-point numbers allowed.
 */
 #define PY_TIMEOUT_T long long
+<<<<<<< HEAD
 
 #if defined(_POSIX_THREADS)
    /* PyThread_acquire_lock_timed() uses _PyTime_FromNanoseconds(us * 1000),
@@ -58,6 +71,17 @@ PyAPI_FUNC(int) PyThread_acquire_lock(PyThread_type_lock, int);
 #  define PY_TIMEOUT_MAX PY_LLONG_MAX
 #endif
 
+=======
+#define PY_TIMEOUT_MAX PY_LLONG_MAX
+
+/* In the NT API, the timeout is a DWORD and is expressed in milliseconds */
+#if defined (NT_THREADS)
+#if 0xFFFFFFFFLL * 1000 < PY_TIMEOUT_MAX
+#undef PY_TIMEOUT_MAX
+#define PY_TIMEOUT_MAX (0xFFFFFFFFLL * 1000)
+#endif
+#endif
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* If microseconds == 0, the call is non-blocking: it returns immediately
    even when the lock can't be acquired.
@@ -84,6 +108,7 @@ PyAPI_FUNC(int) PyThread_set_stacksize(size_t);
 PyAPI_FUNC(PyObject*) PyThread_GetInfo(void);
 #endif
 
+<<<<<<< HEAD
 
 /* Thread Local Storage (TLS) API
    TLS API is DEPRECATED.  Use Thread Specific Storage (TSS) API.
@@ -147,6 +172,17 @@ PyAPI_FUNC(void) PyThread_tss_delete(Py_tss_t *key);
 PyAPI_FUNC(int) PyThread_tss_set(Py_tss_t *key, void *value);
 PyAPI_FUNC(void *) PyThread_tss_get(Py_tss_t *key);
 #endif  /* New in 3.7 */
+=======
+/* Thread Local Storage (TLS) API */
+PyAPI_FUNC(int) PyThread_create_key(void);
+PyAPI_FUNC(void) PyThread_delete_key(int);
+PyAPI_FUNC(int) PyThread_set_key_value(int, void *);
+PyAPI_FUNC(void *) PyThread_get_key_value(int);
+PyAPI_FUNC(void) PyThread_delete_key_value(int key);
+
+/* Cleanup after a fork */
+PyAPI_FUNC(void) PyThread_ReInitTLS(void);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 #ifdef __cplusplus
 }

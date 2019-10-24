@@ -11,6 +11,7 @@ extern "C" {
 /* Public interface */
 struct _node; /* Declare the existence of this type */
 PyAPI_FUNC(PyCodeObject *) PyNode_Compile(struct _node *, const char *);
+<<<<<<< HEAD
 /* XXX (ncoghlan): Unprefixed type name in a public API! */
 
 #define PyCF_MASK (CO_FUTURE_DIVISION | CO_FUTURE_ABSOLUTE_IMPORT | \
@@ -28,6 +29,8 @@ typedef struct {
     int cf_flags;  /* bitmask of CO_xxx flags relevant to future */
 } PyCompilerFlags;
 #endif
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* Future feature support */
 
@@ -45,7 +48,10 @@ typedef struct {
 #define FUTURE_UNICODE_LITERALS "unicode_literals"
 #define FUTURE_BARRY_AS_BDFL "barry_as_FLUFL"
 #define FUTURE_GENERATOR_STOP "generator_stop"
+<<<<<<< HEAD
 #define FUTURE_ANNOTATIONS "annotations"
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 struct _mod; /* Declare the existence of this type */
 #define PyAST_Compile(mod, s, f, ar) PyAST_CompileEx(mod, s, f, -1, ar)
@@ -76,8 +82,11 @@ PyAPI_FUNC(PyObject*) _Py_Mangle(PyObject *p, PyObject *name);
 #define PY_INVALID_STACK_EFFECT INT_MAX
 PyAPI_FUNC(int) PyCompile_OpcodeStackEffect(int opcode, int oparg);
 
+<<<<<<< HEAD
 PyAPI_FUNC(int) _PyAST_Optimize(struct _mod *, PyArena *arena, int optimize);
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef __cplusplus
 }
 #endif

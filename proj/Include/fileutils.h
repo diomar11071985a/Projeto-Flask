@@ -13,6 +13,7 @@ PyAPI_FUNC(wchar_t *) Py_DecodeLocale(
 PyAPI_FUNC(char*) Py_EncodeLocale(
     const wchar_t *text,
     size_t *error_pos);
+<<<<<<< HEAD
 
 PyAPI_FUNC(char*) _Py_EncodeLocaleRaw(
     const wchar_t *text,
@@ -72,6 +73,13 @@ PyAPI_FUNC(PyObject *) _Py_device_encoding(int);
 #   define _PY_READ_MAX  PY_SSIZE_T_MAX
 #   define _PY_WRITE_MAX PY_SSIZE_T_MAX
 #endif
+=======
+#endif
+
+#ifndef Py_LIMITED_API
+
+PyAPI_FUNC(PyObject *) _Py_device_encoding(int);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 #ifdef MS_WINDOWS
 struct _Py_stat_struct {
@@ -165,9 +173,12 @@ PyAPI_FUNC(int) _Py_get_inheritable(int fd);
 PyAPI_FUNC(int) _Py_set_inheritable(int fd, int inheritable,
                                     int *atomic_flag_works);
 
+<<<<<<< HEAD
 PyAPI_FUNC(int) _Py_set_inheritable_async_safe(int fd, int inheritable,
                                                int *atomic_flag_works);
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(int) _Py_dup(int fd);
 
 #ifndef MS_WINDOWS
@@ -176,6 +187,7 @@ PyAPI_FUNC(int) _Py_get_blocking(int fd);
 PyAPI_FUNC(int) _Py_set_blocking(int fd, int blocking);
 #endif   /* !MS_WINDOWS */
 
+<<<<<<< HEAD
 PyAPI_FUNC(int) _Py_GetLocaleconvNumeric(
     PyObject **decimal_point,
     PyObject **thousands_sep,
@@ -194,6 +206,10 @@ PyAPI_FUNC(int) _Py_GetForceASCII(void);
 PyAPI_FUNC(void) _Py_ResetForceASCII(void);
 #endif
 
+=======
+#endif   /* Py_LIMITED_API */
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef __cplusplus
 }
 #endif

@@ -20,6 +20,7 @@ extern "C" {
 
 typedef struct {
     PyObject_HEAD
+<<<<<<< HEAD
     PyObject *func_code;        /* A code object, the __code__ attribute */
     PyObject *func_globals;     /* A dictionary (other mappings won't do) */
     PyObject *func_defaults;    /* NULL or a tuple */
@@ -31,6 +32,19 @@ typedef struct {
     PyObject *func_weakreflist; /* List of weak references */
     PyObject *func_module;      /* The __module__ attribute, can be anything */
     PyObject *func_annotations; /* Annotations, a dict or NULL */
+=======
+    PyObject *func_code;	/* A code object, the __code__ attribute */
+    PyObject *func_globals;	/* A dictionary (other mappings won't do) */
+    PyObject *func_defaults;	/* NULL or a tuple */
+    PyObject *func_kwdefaults;	/* NULL or a dict */
+    PyObject *func_closure;	/* NULL or a tuple of cell objects */
+    PyObject *func_doc;		/* The __doc__ attribute, can be anything */
+    PyObject *func_name;	/* The __name__ attribute, a string object */
+    PyObject *func_dict;	/* The __dict__ attribute, a dict or NULL */
+    PyObject *func_weakreflist;	/* List of weak references */
+    PyObject *func_module;	/* The __module__ attribute, can be anything */
+    PyObject *func_annotations;	/* Annotations, a dict or NULL */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     PyObject *func_qualname;    /* The qualified name */
 
     /* Invariant:
@@ -61,13 +75,21 @@ PyAPI_FUNC(int) PyFunction_SetAnnotations(PyObject *, PyObject *);
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(PyObject *) _PyFunction_FastCallDict(
     PyObject *func,
+<<<<<<< HEAD
     PyObject *const *args,
+=======
+    PyObject **args,
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     Py_ssize_t nargs,
     PyObject *kwargs);
 
 PyAPI_FUNC(PyObject *) _PyFunction_FastCallKeywords(
     PyObject *func,
+<<<<<<< HEAD
     PyObject *const *stack,
+=======
+    PyObject **stack,
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     Py_ssize_t nargs,
     PyObject *kwnames);
 #endif
@@ -77,6 +99,7 @@ PyAPI_FUNC(PyObject *) _PyFunction_FastCallKeywords(
 #define PyFunction_GET_CODE(func) \
         (((PyFunctionObject *)func) -> func_code)
 #define PyFunction_GET_GLOBALS(func) \
+<<<<<<< HEAD
         (((PyFunctionObject *)func) -> func_globals)
 #define PyFunction_GET_MODULE(func) \
         (((PyFunctionObject *)func) -> func_module)
@@ -88,6 +111,19 @@ PyAPI_FUNC(PyObject *) _PyFunction_FastCallKeywords(
         (((PyFunctionObject *)func) -> func_closure)
 #define PyFunction_GET_ANNOTATIONS(func) \
         (((PyFunctionObject *)func) -> func_annotations)
+=======
+	(((PyFunctionObject *)func) -> func_globals)
+#define PyFunction_GET_MODULE(func) \
+	(((PyFunctionObject *)func) -> func_module)
+#define PyFunction_GET_DEFAULTS(func) \
+	(((PyFunctionObject *)func) -> func_defaults)
+#define PyFunction_GET_KW_DEFAULTS(func) \
+	(((PyFunctionObject *)func) -> func_kwdefaults)
+#define PyFunction_GET_CLOSURE(func) \
+	(((PyFunctionObject *)func) -> func_closure)
+#define PyFunction_GET_ANNOTATIONS(func) \
+	(((PyFunctionObject *)func) -> func_annotations)
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* The classmethod and staticmethod types lives here, too */
 PyAPI_DATA(PyTypeObject) PyClassMethod_Type;

@@ -83,12 +83,21 @@ $t window create end \
   -cursor top_left_arrow} -padx 3
 $t insert end " widget.  Notice how peer widgets can have different "
 $t insert end "font settings, and by default contain all the images "
+<<<<<<< HEAD
 $t insert end "of the 'parent', but that the embedded windows, "
 $t insert end "such as buttons may not appear in the peer.  To ensure "
 $t insert end "that embedded windows appear in all peers you can set the "
 $t insert end "'-create' option to a script or a string containing %W.  "
 $t insert end "(The plot above and the 'Make A Peer' button are "
 $t insert end "designed to show up in all peers.)  A good use of "
+=======
+$t insert end "of the 'parent', but many of the embedded windows, "
+$t insert end "such as buttons will not be there.  The easiest way "
+$t insert end "to ensure they are in all peers is to use '-create' "
+$t insert end "embedded window creation scripts "
+$t insert end "(the plot above and the 'Make A Peer' button are "
+$t insert end "designed to show up in all peers).  A good use of "
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 $t insert end "peers is for "
 $t window create end \
   -create {button %W.split -text "Split Windows" -command "textSplitWindow %W" \
@@ -112,7 +121,10 @@ $t insert end "you can see how the text widget automatically "
 $t insert end "changes the layout.  Click on the button again "
 $t insert end "to restore the short string.\n"
 
+<<<<<<< HEAD
 $t insert end "\nNOTE: these buttons will not appear in peers!\n" "peer_warning"
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 button $t.default -text Default -command "embDefBg $t" \
 	-cursor top_left_arrow
 $t window create end -window $t.default -padx 3
@@ -165,6 +177,10 @@ $t insert end "\n\nFinally, images fit comfortably in text widgets too:"
 $t image create end -image \
     [image create photo -file [file join $tk_demoDirectory images ouster.png]]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 proc textWindBigB w {
     $w configure -borderwidth 15
 }
@@ -302,7 +318,10 @@ proc textMakePeer {parent} {
     frame $w.f -highlightthickness 1 -borderwidth 1 -relief sunken
     set t [$parent peer create $w.f.text -yscrollcommand "$w.scroll set" \
 	       -borderwidth 0 -highlightthickness 0]
+<<<<<<< HEAD
     $t tag configure peer_warning -font boldFont
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     pack $t -expand  yes -fill both
     ttk::scrollbar $w.scroll -command "$t yview"
     pack $w.scroll -side right -fill y
@@ -318,7 +337,10 @@ proc textSplitWindow {textW} {
 	    set w [winfo parent $parent]
 	    set t [$textW peer create $w.peer \
 	      -yscrollcommand "$w.scroll set"]
+<<<<<<< HEAD
 	    $t tag configure peer_warning -font boldFont
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    $w.pane add $t
 	}
     } else {

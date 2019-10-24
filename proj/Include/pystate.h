@@ -8,8 +8,11 @@
 extern "C" {
 #endif
 
+<<<<<<< HEAD
 #include "pythread.h"
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* This limitation is for performance and simplicity. If needed it can be
 removed (with effort). */
 #define MAX_CO_EXTRA_USERS 255
@@ -25,6 +28,7 @@ typedef struct _is PyInterpreterState;
 #else
 typedef PyObject* (*_PyFrameEvalFunction)(struct _frame *, int);
 
+<<<<<<< HEAD
 
 typedef struct {
     int install_signal_handlers;  /* Install signal handlers? -1 means unset */
@@ -110,21 +114,27 @@ typedef struct {
     (_PyMainInterpreterConfig){.install_signal_handlers = -1}
 /* Note: _PyMainInterpreterConfig_INIT sets other fields to 0/NULL */
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 typedef struct _is {
 
     struct _is *next;
     struct _ts *tstate_head;
 
+<<<<<<< HEAD
     int64_t id;
     int64_t id_refcount;
     PyThread_type_lock id_mutex;
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     PyObject *modules;
     PyObject *modules_by_index;
     PyObject *sysdict;
     PyObject *builtins;
     PyObject *importlib;
 
+<<<<<<< HEAD
     /* Used in Python/sysmodule.c. */
     int check_interval;
 
@@ -136,14 +146,19 @@ typedef struct _is {
     /* Used in Python/thread.c. */
     size_t pythread_stacksize;
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     PyObject *codec_search_path;
     PyObject *codec_search_cache;
     PyObject *codec_error_registry;
     int codecs_initialized;
     int fscodec_initialized;
 
+<<<<<<< HEAD
     _PyCoreConfig core_config;
     _PyMainInterpreterConfig config;
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef HAVE_DLOPEN
     int dlopenflags;
 #endif
@@ -152,6 +167,7 @@ typedef struct _is {
     PyObject *import_func;
     /* Initialized to PyEval_EvalFrameDefault(). */
     _PyFrameEvalFunction eval_frame;
+<<<<<<< HEAD
 
     Py_ssize_t co_extra_user_count;
     freefunc co_extra_freefuncs[MAX_CO_EXTRA_USERS];
@@ -169,6 +185,21 @@ typedef struct _is {
 } PyInterpreterState;
 #endif   /* !Py_LIMITED_API */
 
+=======
+} PyInterpreterState;
+#endif
+
+typedef struct _co_extra_state {
+    struct _co_extra_state *next;
+    PyInterpreterState* interp;
+
+    Py_ssize_t co_extra_user_count;
+    freefunc co_extra_freefuncs[MAX_CO_EXTRA_USERS];
+} __PyCodeExtraState;
+
+/* This is temporary for backwards compat in 3.6 and will be removed in 3.7 */
+__PyCodeExtraState* __PyCodeExtraState_Get(void);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* State unique per thread */
 
@@ -176,11 +207,15 @@ typedef struct _is {
 /* Py_tracefunc return -1 when raising an exception, or 0 for success. */
 typedef int (*Py_tracefunc)(PyObject *, struct _frame *, int, PyObject *);
 
+<<<<<<< HEAD
 /* The following values are used for 'what' for tracefunc functions
  *
  * To add a new kind of trace event, also update "trace_init" in
  * Python/sysmodule.c to define the Python level event name
  */
+=======
+/* The following values are used for 'what' for tracefunc functions: */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #define PyTrace_CALL 0
 #define PyTrace_EXCEPTION 1
 #define PyTrace_LINE 2
@@ -188,12 +223,17 @@ typedef int (*Py_tracefunc)(PyObject *, struct _frame *, int, PyObject *);
 #define PyTrace_C_CALL 4
 #define PyTrace_C_EXCEPTION 5
 #define PyTrace_C_RETURN 6
+<<<<<<< HEAD
 #define PyTrace_OPCODE 7
 #endif   /* Py_LIMITED_API */
+=======
+#endif
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 #ifdef Py_LIMITED_API
 typedef struct _ts PyThreadState;
 #else
+<<<<<<< HEAD
 
 typedef struct _err_stackitem {
     /* This struct represents an entry on the exception stack, which is a
@@ -209,6 +249,8 @@ typedef struct _err_stackitem {
 } _PyErr_StackItem;
 
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 typedef struct _ts {
     /* See Python/ceval.c for comments explaining most fields */
 
@@ -222,8 +264,11 @@ typedef struct _ts {
                         to handle the runtime error. */
     char recursion_critical; /* The current calls must not cause
                                 a stack overflow. */
+<<<<<<< HEAD
     int stackcheck_counter;
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     /* 'tracing' keeps track of the execution depth when tracing/profiling.
        This is to prevent the actual trace/profile code from being recorded in
        the trace/profile. */
@@ -235,11 +280,15 @@ typedef struct _ts {
     PyObject *c_profileobj;
     PyObject *c_traceobj;
 
+<<<<<<< HEAD
     /* The exception currently being raised */
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     PyObject *curexc_type;
     PyObject *curexc_value;
     PyObject *curexc_traceback;
 
+<<<<<<< HEAD
     /* The exception currently being handled, if no coroutines/generators
      * are present. Always last element on the stack referred to be exc_info.
      */
@@ -248,13 +297,22 @@ typedef struct _ts {
     /* Pointer to the top of the stack of the exceptions currently
      * being handled */
     _PyErr_StackItem *exc_info;
+=======
+    PyObject *exc_type;
+    PyObject *exc_value;
+    PyObject *exc_traceback;
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
     PyObject *dict;  /* Stores per-thread state */
 
     int gilstate_counter;
 
     PyObject *async_exc; /* Asynchronous exception to raise */
+<<<<<<< HEAD
     unsigned long thread_id; /* Thread id where this tstate was created */
+=======
+    long thread_id; /* Thread id where this tstate was created */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
     int trash_delete_nesting;
     PyObject *trash_delete_later;
@@ -285,6 +343,7 @@ typedef struct _ts {
     void (*on_delete)(void *);
     void *on_delete_data;
 
+<<<<<<< HEAD
     int coroutine_origin_tracking_depth;
 
     PyObject *coroutine_wrapper;
@@ -303,15 +362,35 @@ typedef struct _ts {
 
 } PyThreadState;
 #endif   /* !Py_LIMITED_API */
+=======
+    PyObject *coroutine_wrapper;
+    int in_coroutine_wrapper;
+
+    /* Now used from PyInterpreterState, kept here for ABI
+       compatibility with PyThreadState */
+    Py_ssize_t _preserve_36_ABI_1;
+    freefunc _preserve_36_ABI_2[MAX_CO_EXTRA_USERS];
+
+    PyObject *async_gen_firstiter;
+    PyObject *async_gen_finalizer;
+
+    /* XXX signal handlers should also be here */
+
+} PyThreadState;
+#endif
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 
 PyAPI_FUNC(PyInterpreterState *) PyInterpreterState_New(void);
 PyAPI_FUNC(void) PyInterpreterState_Clear(PyInterpreterState *);
 PyAPI_FUNC(void) PyInterpreterState_Delete(PyInterpreterState *);
+<<<<<<< HEAD
 #if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 >= 0x03070000
 /* New in 3.7 */
 PyAPI_FUNC(int64_t) PyInterpreterState_GetID(PyInterpreterState *);
 #endif
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(int) _PyState_AddModule(PyObject*, struct PyModuleDef*);
 #endif /* !Py_LIMITED_API */
@@ -335,10 +414,18 @@ PyAPI_FUNC(void) PyThreadState_Delete(PyThreadState *);
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(void) _PyThreadState_DeleteExcept(PyThreadState *tstate);
 #endif /* !Py_LIMITED_API */
+<<<<<<< HEAD
+=======
+#ifdef WITH_THREAD
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(void) PyThreadState_DeleteCurrent(void);
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(void) _PyGILState_Reinit(void);
 #endif /* !Py_LIMITED_API */
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* Return the current thread state. The global interpreter lock must be held.
  * When the current thread state is NULL, this issues a fatal error (so that
@@ -353,7 +440,11 @@ PyAPI_FUNC(PyThreadState *) _PyThreadState_UncheckedGet(void);
 
 PyAPI_FUNC(PyThreadState *) PyThreadState_Swap(PyThreadState *);
 PyAPI_FUNC(PyObject *) PyThreadState_GetDict(void);
+<<<<<<< HEAD
 PyAPI_FUNC(int) PyThreadState_SetAsyncExc(unsigned long, PyObject *);
+=======
+PyAPI_FUNC(int) PyThreadState_SetAsyncExc(long, PyObject *);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 
 /* Variable and macro for in-line access to current thread state */
@@ -361,7 +452,11 @@ PyAPI_FUNC(int) PyThreadState_SetAsyncExc(unsigned long, PyObject *);
 /* Assuming the current thread holds the GIL, this is the
    PyThreadState for the current thread. */
 #ifdef Py_BUILD_CORE
+<<<<<<< HEAD
 #  define _PyThreadState_Current _PyRuntime.gilstate.tstate_current
+=======
+PyAPI_DATA(_Py_atomic_address) _PyThreadState_Current;
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #  define PyThreadState_GET() \
              ((PyThreadState*)_Py_atomic_load_relaxed(&_PyThreadState_Current))
 #else
@@ -372,6 +467,10 @@ typedef
     enum {PyGILState_LOCKED, PyGILState_UNLOCKED}
         PyGILState_STATE;
 
+<<<<<<< HEAD
+=======
+#ifdef WITH_THREAD
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* Ensure that the current thread is ready to call the Python
    C API, regardless of the current state of Python, or of its
@@ -415,6 +514,13 @@ PyAPI_FUNC(void) PyGILState_Release(PyGILState_STATE);
 PyAPI_FUNC(PyThreadState *) PyGILState_GetThisThreadState(void);
 
 #ifndef Py_LIMITED_API
+<<<<<<< HEAD
+=======
+/* Issue #26558: Flag to disable PyGILState_Check().
+   If set to non-zero, PyGILState_Check() always return 1. */
+PyAPI_DATA(int) _PyGILState_check_enabled;
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Helper/diagnostic function - return 1 if the current thread
    currently holds the GIL, 0 otherwise.
 
@@ -427,8 +533,14 @@ PyAPI_FUNC(int) PyGILState_Check(void);
    Return NULL before _PyGILState_Init() is called and after _PyGILState_Fini()
    is called. */
 PyAPI_FUNC(PyInterpreterState *) _PyGILState_GetInterpreterStateUnsafe(void);
+<<<<<<< HEAD
 #endif   /* !Py_LIMITED_API */
 
+=======
+#endif
+
+#endif   /* #ifdef WITH_THREAD */
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* The implementation of sys._current_frames()  Returns a dict mapping
    thread id to that thread's current frame.
@@ -440,7 +552,10 @@ PyAPI_FUNC(PyObject *) _PyThread_CurrentFrames(void);
 /* Routines for advanced debuggers, requested by David Beazley.
    Don't use unless you know what you are doing! */
 #ifndef Py_LIMITED_API
+<<<<<<< HEAD
 PyAPI_FUNC(PyInterpreterState *) PyInterpreterState_Main(void);
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(PyInterpreterState *) PyInterpreterState_Head(void);
 PyAPI_FUNC(PyInterpreterState *) PyInterpreterState_Next(PyInterpreterState *);
 PyAPI_FUNC(PyThreadState *) PyInterpreterState_ThreadHead(PyInterpreterState *);
@@ -449,6 +564,14 @@ PyAPI_FUNC(PyThreadState *) PyThreadState_Next(PyThreadState *);
 typedef struct _frame *(*PyThreadFrameGetter)(PyThreadState *self_);
 #endif
 
+<<<<<<< HEAD
+=======
+/* hook for PyEval_GetFrame(), requested for Psyco */
+#ifndef Py_LIMITED_API
+PyAPI_DATA(PyThreadFrameGetter) _PyThreadState_GetFrame;
+#endif
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef __cplusplus
 }
 #endif

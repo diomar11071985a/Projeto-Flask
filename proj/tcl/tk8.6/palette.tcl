@@ -205,11 +205,16 @@ proc ::tk::RecolorTree {w colors} {
 #
 # Arguments:
 # color -	Name of starting color.
+<<<<<<< HEAD
 # percent -	Integer telling how much to brighten or darken as a
+=======
+# perecent -	Integer telling how much to brighten or darken as a
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #		percent: 50 means darken by 50%, 110 means brighten
 #		by 10%.
 
 proc ::tk::Darken {color percent} {
+<<<<<<< HEAD
     if {$percent < 0} {
         return #000000
     } elseif {$percent > 200} {
@@ -226,6 +231,24 @@ proc ::tk::Darken {color percent} {
         set b [expr {255 - ((65535-$b)/256)*(200-$percent)/100}]
     }
     return [format #%02x%02x%02x $r $g $b]
+=======
+    foreach {red green blue} [winfo rgb . $color] {
+	set red [expr {($red/256)*$percent/100}]
+	set green [expr {($green/256)*$percent/100}]
+	set blue [expr {($blue/256)*$percent/100}]
+	break
+    }
+    if {$red > 255} {
+	set red 255
+    }
+    if {$green > 255} {
+	set green 255
+    }
+    if {$blue > 255} {
+	set blue 255
+    }
+    return [format "#%02x%02x%02x" $red $green $blue]
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 }
 
 # ::tk_bisque --

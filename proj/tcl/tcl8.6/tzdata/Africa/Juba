@@ -1,4 +1,5 @@
 # created by tools/tclZIC.tcl - do not edit
+<<<<<<< HEAD
 
 set TZData(:Africa/Juba) {
     {-9223372036854775808 7588 0 LMT}
@@ -37,3 +38,9 @@ set TZData(:Africa/Juba) {
     {498171600 7200 0 CAT}
     {947930400 10800 0 EAT}
 }
+=======
+if {![info exists TZData(Africa/Khartoum)]} {
+    LoadTimeZoneFile Africa/Khartoum
+}
+set TZData(:Africa/Juba) $TZData(:Africa/Khartoum)
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65

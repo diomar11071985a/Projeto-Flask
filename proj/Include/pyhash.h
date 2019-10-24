@@ -16,7 +16,11 @@ PyAPI_FUNC(Py_hash_t) _Py_HashBytes(const void*, Py_ssize_t);
 #define _PyHASH_MULTIPLIER 1000003UL  /* 0xf4243 */
 
 /* Parameters used for the numeric hash implementation.  See notes for
+<<<<<<< HEAD
    _Py_HashDouble in Python/pyhash.c.  Numeric hashes are based on
+=======
+   _Py_HashDouble in Objects/object.c.  Numeric hashes are based on
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
    reduction modulo the prime 2**_PyHASH_BITS - 1. */
 
 #if SIZEOF_VOID_P >= 8

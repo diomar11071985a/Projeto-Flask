@@ -29,6 +29,7 @@ typedef enum {
     _PyTime_ROUND_CEILING=1,
     /* Round to nearest with ties going to nearest even integer.
        For example, used to round from a Python float. */
+<<<<<<< HEAD
     _PyTime_ROUND_HALF_EVEN=2,
     /* Round away from zero
        For example, used for timeout. _PyTime_ROUND_CEILING rounds
@@ -43,6 +44,11 @@ typedef enum {
 } _PyTime_round_t;
 
 
+=======
+    _PyTime_ROUND_HALF_EVEN
+} _PyTime_round_t;
+
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Convert a time_t to a PyLong. */
 PyAPI_FUNC(PyObject *) _PyLong_FromTime_t(
     time_t sec);
@@ -85,11 +91,15 @@ PyAPI_FUNC(_PyTime_t) _PyTime_FromSeconds(int seconds);
             ((_PyTime_t)(seconds) * (1000 * 1000 * 1000))
 
 /* Create a timestamp from a number of nanoseconds. */
+<<<<<<< HEAD
 PyAPI_FUNC(_PyTime_t) _PyTime_FromNanoseconds(_PyTime_t ns);
 
 /* Create a timestamp from nanoseconds (Python int). */
 PyAPI_FUNC(int) _PyTime_FromNanosecondsObject(_PyTime_t *t,
     PyObject *obj);
+=======
+PyAPI_FUNC(_PyTime_t) _PyTime_FromNanoseconds(long long ns);
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* Convert a number of seconds (Python float or int) to a timetamp.
    Raise an exception and return -1 on error, return 0 on success. */
@@ -118,10 +128,13 @@ PyAPI_FUNC(_PyTime_t) _PyTime_AsMicroseconds(_PyTime_t t,
    object. */
 PyAPI_FUNC(PyObject *) _PyTime_AsNanosecondsObject(_PyTime_t t);
 
+<<<<<<< HEAD
 /* Create a timestamp from a timeval structure.
    Raise an exception and return -1 on overflow, return 0 on success. */
 PyAPI_FUNC(int) _PyTime_FromTimeval(_PyTime_t *tp, struct timeval *tv);
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Convert a timestamp to a timeval structure (microsecond resolution).
    tv_usec is always positive.
    Raise an exception and return -1 if the conversion overflowed,
@@ -148,22 +161,28 @@ PyAPI_FUNC(int) _PyTime_AsTimevalTime_t(
     _PyTime_round_t round);
 
 #if defined(HAVE_CLOCK_GETTIME) || defined(HAVE_KQUEUE)
+<<<<<<< HEAD
 /* Create a timestamp from a timespec structure.
    Raise an exception and return -1 on overflow, return 0 on success. */
 PyAPI_FUNC(int) _PyTime_FromTimespec(_PyTime_t *tp, struct timespec *ts);
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Convert a timestamp to a timespec structure (nanosecond resolution).
    tv_nsec is always positive.
    Raise an exception and return -1 on error, return 0 on success. */
 PyAPI_FUNC(int) _PyTime_AsTimespec(_PyTime_t t, struct timespec *ts);
 #endif
 
+<<<<<<< HEAD
 /* Compute ticks * mul / div.
    The caller must ensure that ((div - 1) * mul) cannot overflow. */
 PyAPI_FUNC(_PyTime_t) _PyTime_MulDiv(_PyTime_t ticks,
     _PyTime_t mul,
     _PyTime_t div);
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Get the current time from the system clock.
 
    The function cannot fail. _PyTime_Init() ensures that the system clock
@@ -221,6 +240,7 @@ PyAPI_FUNC(int) _PyTime_localtime(time_t t, struct tm *tm);
    Return 0 on success, raise an exception and return -1 on error. */
 PyAPI_FUNC(int) _PyTime_gmtime(time_t t, struct tm *tm);
 
+<<<<<<< HEAD
 /* Get the performance counter: clock with the highest available resolution to
    measure a short duration.
 
@@ -238,6 +258,8 @@ PyAPI_FUNC(int) _PyTime_GetPerfCounterWithInfo(
     _PyTime_t *t,
     _Py_clock_info_t *info);
 
+=======
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef __cplusplus
 }
 #endif

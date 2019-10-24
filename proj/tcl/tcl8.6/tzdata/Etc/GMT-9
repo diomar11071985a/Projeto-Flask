@@ -1,5 +1,9 @@
 # created by tools/tclZIC.tcl - do not edit
 
 set TZData(:Etc/GMT-9) {
+<<<<<<< HEAD
     {-9223372036854775808 32400 0 +09}
+=======
+    {-9223372036854775808 32400 0 GMT-9}
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 }

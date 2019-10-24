@@ -18,7 +18,11 @@
 ::msgcat::mcset en "Demo code: %s"
 ::msgcat::mcset en "About Widget Demo"
 ::msgcat::mcset en "Tk widget demonstration application"
+<<<<<<< HEAD
 ::msgcat::mcset en "Copyright © %s"
+=======
+::msgcat::mcset en "Copyright \u00a9 %s"
+>>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 ::msgcat::mcset en "
     @@title
     Tk Widget Demonstrations
