@@ -1,0 +1,58 @@
+body{
+     background-color: white;
+     background-image: url(img.jpg);
+}
+p{
+    text-align: right;
+    font-size: 36px;
+    color: white;
+}
+p.centro{
+    text-align: center;
+    font-size: 52px;
+    color: white;
+}
+p.esquerda{
+    text-align: left;
+    font-family: "Times new roman";
+    font-size: 40px;
+    color: black;
+}
+.fonte{
+    font-family: "lucida handwriting";
+    font-size: 20px;
+    color: rgb(241, 156, 95);
+}
+.generica{
+    font-family: "Times new roman";
+    font-size: 40px;
+    color: white;
+}
+.genericab{
+    font-family: "Times new roman";
+    font-size: 40px;
+    color: black;
+}
+
+h2,h5{
+    text-align: left;
+    color: greenyellow;
+    font-family: "lucida Sans";
+}
+a:hover{
+    color:#0000FF;
+    font-style: 50px;
+}
+
+a:link{
+    color: yellowgreen;
+}
+h1{
+    text-align: left;
+    font-size: 60px;
+    color: rgb(202, 202, 212);
+}
+
+
+
+
