@@ -1,0 +1,67 @@
+body{
+    background-image: url(img.jpg);
+}
+p{
+    text-align: left;
+    font-size: 46px;
+    color: white;
+}
+
+p.centro{
+    text-align: center;
+    background:#363636;
+    font-size: 52px;
+    color: white;
+
+}
+.bt{
+    font-size: 30px;
+    color: blue;
+}
+.generica{
+    font-family: "Arial";
+    font-size: 32px;
+    color: white;
+}
+h2{
+    font-size: 30px;
+    text-align: left;
+    color:white;
+    font-family: "Arial";
+}
+a:hover{
+    color:ff0000;
+    font-style: 50px;
+}
+a:link{
+    color: yellowgreen;
+}
+h1{
+    text-align: left;
+    font-size: 30px;
+    color: white;
+}
+html{
+	height: 100%;
+}
+body {
+	text-align:left;
+	background: #000;
+	margin:0;
+	padding:0;
+    height:100%;
+    background-image: url(img.jpg);
+}
+* {
+	list-style:none; 
+	padding:0px;
+	margin:0px;
+}
+#all{
+	height:100%;
+	width:100%;
+	margin:auto;
+}
+
+
+
