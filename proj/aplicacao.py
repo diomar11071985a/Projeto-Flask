@@ -19,6 +19,11 @@ def vestibular():
 def listcur():
     return render_template("listacursos.html")
 
+@app.route('/Noticiasfaculdade')
+
+def listcur():
+    return render_template("Noticiasfaculdade.html")
+
 app.run()
 =======
 @app.route('/administracao')
