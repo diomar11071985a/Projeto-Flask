@@ -1,1 +1,1 @@
-c:\users\92038396.clarobr\appdata\local\programs\python\python37-32
+c:\program files\python36
