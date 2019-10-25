@@ -170,10 +170,6 @@ bind Menu <<NextLine>> {
 }
 bind Menu <KeyPress> {
     tk::TraverseWithinMenu %W %A
-<<<<<<< HEAD
-    break
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 }
 
 # The following bindings apply to all windows, and are used to
@@ -611,15 +607,6 @@ proc ::tk::MenuButtonDown menu {
     if {![winfo viewable $menu]} {
         return
     }
-<<<<<<< HEAD
-    if {[$menu index active] eq "none"} {
-        if {[$menu cget -type] ne "menubar" } {
-            set Priv(window) {}
-        }
-        return
-    }
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     $menu postcascade active
     if {$Priv(postedMb) ne "" && [winfo viewable $Priv(postedMb)]} {
 	grab -global $Priv(postedMb)

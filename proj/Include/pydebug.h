@@ -15,10 +15,7 @@ PyAPI_DATA(int) Py_InspectFlag;
 PyAPI_DATA(int) Py_OptimizeFlag;
 PyAPI_DATA(int) Py_NoSiteFlag;
 PyAPI_DATA(int) Py_BytesWarningFlag;
-<<<<<<< HEAD
-=======
 PyAPI_DATA(int) Py_UseClassExceptionsFlag;
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_DATA(int) Py_FrozenFlag;
 PyAPI_DATA(int) Py_IgnoreEnvironmentFlag;
 PyAPI_DATA(int) Py_DontWriteBytecodeFlag;
@@ -28,10 +25,6 @@ PyAPI_DATA(int) Py_HashRandomizationFlag;
 PyAPI_DATA(int) Py_IsolatedFlag;
 
 #ifdef MS_WINDOWS
-<<<<<<< HEAD
-PyAPI_DATA(int) Py_LegacyWindowsFSEncodingFlag;
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_DATA(int) Py_LegacyWindowsStdioFlag;
 #endif
 

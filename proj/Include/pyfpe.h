@@ -1,16 +1,5 @@
 #ifndef Py_PYFPE_H
 #define Py_PYFPE_H
-<<<<<<< HEAD
-
-/* These macros used to do something when Python was built with --with-fpectl,
- * but support for that was dropped in 3.7. We continue to define them though,
- * to avoid breaking API users.
- */
-
-#define PyFPE_START_PROTECT(err_string, leave_stmt)
-#define PyFPE_END_PROTECT(v)
-
-=======
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -184,5 +173,4 @@ if (!PyFPE_counter++ && setjmp(PyFPE_jbuf)) { \
 #ifdef __cplusplus
 }
 #endif
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif /* !Py_PYFPE_H */

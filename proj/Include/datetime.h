@@ -155,22 +155,12 @@ typedef struct {
     PyTypeObject *DeltaType;
     PyTypeObject *TZInfoType;
 
-<<<<<<< HEAD
-    /* singletons */
-    PyObject *TimeZone_UTC;
-
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     /* constructors */
     PyObject *(*Date_FromDate)(int, int, int, PyTypeObject*);
     PyObject *(*DateTime_FromDateAndTime)(int, int, int, int, int, int, int,
         PyObject*, PyTypeObject*);
     PyObject *(*Time_FromTime)(int, int, int, int, PyObject*, PyTypeObject*);
     PyObject *(*Delta_FromDelta)(int, int, int, int, PyTypeObject*);
-<<<<<<< HEAD
-    PyObject *(*TimeZone_FromTimeZone)(PyObject *offset, PyObject *name);
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
     /* constructors for the DB API */
     PyObject *(*DateTime_FromTimestamp)(PyObject*, PyObject*, PyObject*);
@@ -212,12 +202,6 @@ static PyDateTime_CAPI *PyDateTimeAPI = NULL;
 #define PyDateTime_IMPORT \
     PyDateTimeAPI = (PyDateTime_CAPI *)PyCapsule_Import(PyDateTime_CAPSULE_NAME, 0)
 
-<<<<<<< HEAD
-/* Macro for access to the UTC singleton */
-#define PyDateTime_TimeZone_UTC PyDateTimeAPI->TimeZone_UTC
-
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Macros for type checking when not building the Python core. */
 #define PyDate_Check(op) PyObject_TypeCheck(op, PyDateTimeAPI->DateType)
 #define PyDate_CheckExact(op) (Py_TYPE(op) == PyDateTimeAPI->DateType)
@@ -258,15 +242,6 @@ static PyDateTime_CAPI *PyDateTimeAPI = NULL;
     PyDateTimeAPI->Delta_FromDelta(days, seconds, useconds, 1, \
         PyDateTimeAPI->DeltaType)
 
-<<<<<<< HEAD
-#define PyTimeZone_FromOffset(offset) \
-    PyDateTimeAPI->TimeZone_FromTimeZone(offset, NULL)
-
-#define PyTimeZone_FromOffsetAndName(offset, name) \
-    PyDateTimeAPI->TimeZone_FromTimeZone(offset, name)
-
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 /* Macros supporting the DB API. */
 #define PyDateTime_FromTimestamp(args) \
     PyDateTimeAPI->DateTime_FromTimestamp( \

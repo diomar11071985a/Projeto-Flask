@@ -25,12 +25,7 @@ struct _frame; /* Avoid including frameobject.h */
     /* Name of the generator. */                                            \
     PyObject *prefix##_name;                                                \
     /* Qualified name of the generator. */                                  \
-<<<<<<< HEAD
-    PyObject *prefix##_qualname;                                            \
-    _PyErr_StackItem prefix##_exc_state;
-=======
     PyObject *prefix##_qualname;
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 typedef struct {
     /* The gi_ prefix is intended to remind of generator-iterator. */
@@ -55,20 +50,13 @@ PyAPI_FUNC(void) _PyGen_Finalize(PyObject *self);
 #ifndef Py_LIMITED_API
 typedef struct {
     _PyGenObject_HEAD(cr)
-<<<<<<< HEAD
-    PyObject *cr_origin;
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 } PyCoroObject;
 
 PyAPI_DATA(PyTypeObject) PyCoro_Type;
 PyAPI_DATA(PyTypeObject) _PyCoroWrapper_Type;
 
 PyAPI_DATA(PyTypeObject) _PyAIterWrapper_Type;
-<<<<<<< HEAD
-=======
 PyObject *_PyAIterWrapper_New(PyObject *aiter);
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 #define PyCoro_CheckExact(op) (Py_TYPE(op) == &PyCoro_Type)
 PyObject *_PyCoro_GetAwaitableIter(PyObject *o);

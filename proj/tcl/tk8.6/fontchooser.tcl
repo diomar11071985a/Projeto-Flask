@@ -65,12 +65,6 @@ proc ::tk::fontchooser::Show {} {
         wm transient $S(W) [winfo toplevel $S(-parent)]
         tk::PlaceWindow $S(W) widget $S(-parent)
     }
-<<<<<<< HEAD
-    set S(fonts) [lsort -dictionary [font families]]
-    set S(fonts,lcase) {}
-    foreach font $S(fonts) { lappend S(fonts,lcase) [string tolower $font]}
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     wm deiconify $S(W)
 }
 

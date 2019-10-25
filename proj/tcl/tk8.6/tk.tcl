@@ -11,11 +11,7 @@
 # this file, and for a DISCLAIMER OF ALL WARRANTIES.
 
 # Verify that we have Tk binary and script components from the same release
-<<<<<<< HEAD
-package require -exact Tk  8.6.9
-=======
 package require -exact Tk  8.6.6
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 # Create a ::tk namespace
 namespace eval ::tk {
@@ -604,14 +600,8 @@ proc ::tk::AmpWidget {class path args} {
 # ::tk::AmpMenuArgs --
 #	Processes arguments for a menu entry, turning -label option into
 #	-label and -underline options, returned by ::tk::UnderlineAmpersand.
-<<<<<<< HEAD
-#      The cmd argument is supposed to be either "add" or "entryconfigure"
-#
-proc ::tk::AmpMenuArgs {widget cmd type args} {
-=======
 #
 proc ::tk::AmpMenuArgs {widget add type args} {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     set options {}
     foreach {opt val} $args {
 	if {$opt eq "-label"} {
@@ -621,11 +611,7 @@ proc ::tk::AmpMenuArgs {widget add type args} {
 	    lappend options $opt $val
 	}
     }
-<<<<<<< HEAD
-    $widget $cmd $type {*}$options
-=======
     $widget add $type {*}$options
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 }
 
 # ::tk::FindAltKeyTarget --

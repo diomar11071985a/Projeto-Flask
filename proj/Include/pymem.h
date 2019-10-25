@@ -21,17 +21,12 @@ PyAPI_FUNC(void) PyMem_RawFree(void *ptr);
    allocators. */
 PyAPI_FUNC(int) _PyMem_SetupAllocators(const char *opt);
 
-<<<<<<< HEAD
-/* Try to get the allocators name set by _PyMem_SetupAllocators(). */
-PyAPI_FUNC(const char*) _PyMem_GetAllocatorsName(void);
-=======
 #ifdef WITH_PYMALLOC
 PyAPI_FUNC(int) _PyMem_PymallocEnabled(void);
 #endif
 
 /* Identifier of an address space (domain) in tracemalloc */
 typedef unsigned int _PyTraceMalloc_domain_t;
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* Track an allocated memory block in the tracemalloc module.
    Return 0 on success, return -1 on error (failed to allocate memory to store
@@ -40,13 +35,8 @@ typedef unsigned int _PyTraceMalloc_domain_t;
    Return -2 if tracemalloc is disabled.
 
    If memory block is already tracked, update the existing trace. */
-<<<<<<< HEAD
-PyAPI_FUNC(int) PyTraceMalloc_Track(
-    unsigned int domain,
-=======
 PyAPI_FUNC(int) _PyTraceMalloc_Track(
     _PyTraceMalloc_domain_t domain,
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     uintptr_t ptr,
     size_t size);
 
@@ -54,13 +44,8 @@ PyAPI_FUNC(int) _PyTraceMalloc_Track(
    Do nothing if the block was not tracked.
 
    Return -2 if tracemalloc is disabled, otherwise return 0. */
-<<<<<<< HEAD
-PyAPI_FUNC(int) PyTraceMalloc_Untrack(
-    unsigned int domain,
-=======
 PyAPI_FUNC(int) _PyTraceMalloc_Untrack(
     _PyTraceMalloc_domain_t domain,
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     uintptr_t ptr);
 
 /* Get the traceback where a memory block was allocated.
@@ -72,15 +57,9 @@ PyAPI_FUNC(int) _PyTraceMalloc_Untrack(
 
    Raise an exception and return NULL on error. */
 PyAPI_FUNC(PyObject*) _PyTraceMalloc_GetTraceback(
-<<<<<<< HEAD
-    unsigned int domain,
-    uintptr_t ptr);
-#endif   /* !defined(Py_LIMITED_API) */
-=======
     _PyTraceMalloc_domain_t domain,
     uintptr_t ptr);
 #endif   /* !Py_LIMITED_API */
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 
 /* BEWARE:
@@ -129,19 +108,8 @@ PyAPI_FUNC(void *) PyMem_Realloc(void *ptr, size_t new_size);
 PyAPI_FUNC(void) PyMem_Free(void *ptr);
 
 #ifndef Py_LIMITED_API
-<<<<<<< HEAD
-/* strdup() using PyMem_RawMalloc() */
-PyAPI_FUNC(char *) _PyMem_RawStrdup(const char *str);
-
-/* strdup() using PyMem_Malloc() */
-PyAPI_FUNC(char *) _PyMem_Strdup(const char *str);
-
-/* wcsdup() using PyMem_RawMalloc() */
-PyAPI_FUNC(wchar_t*) _PyMem_RawWcsdup(const wchar_t *str);
-=======
 PyAPI_FUNC(char *) _PyMem_RawStrdup(const char *str);
 PyAPI_FUNC(char *) _PyMem_Strdup(const char *str);
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif
 
 /* Macros. */
@@ -167,19 +135,11 @@ PyAPI_FUNC(char *) _PyMem_Strdup(const char *str);
  */
 
 #define PyMem_New(type, n) \
-<<<<<<< HEAD
-  ( ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :      \
-        ( (type *) PyMem_Malloc((n) * sizeof(type)) ) )
-#define PyMem_NEW(type, n) \
-  ( ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :      \
-        ( (type *) PyMem_MALLOC((n) * sizeof(type)) ) )
-=======
   ( ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :	\
 	( (type *) PyMem_Malloc((n) * sizeof(type)) ) )
 #define PyMem_NEW(type, n) \
   ( ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :	\
 	( (type *) PyMem_MALLOC((n) * sizeof(type)) ) )
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /*
  * The value of (p) is always clobbered by this macro regardless of success.
@@ -188,30 +148,17 @@ PyAPI_FUNC(char *) _PyMem_Strdup(const char *str);
  * caller's memory error handler to not lose track of it.
  */
 #define PyMem_Resize(p, type, n) \
-<<<<<<< HEAD
-  ( (p) = ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :        \
-        (type *) PyMem_Realloc((p), (n) * sizeof(type)) )
-#define PyMem_RESIZE(p, type, n) \
-  ( (p) = ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :        \
-        (type *) PyMem_REALLOC((p), (n) * sizeof(type)) )
-=======
   ( (p) = ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :	\
 	(type *) PyMem_Realloc((p), (n) * sizeof(type)) )
 #define PyMem_RESIZE(p, type, n) \
   ( (p) = ((size_t)(n) > PY_SSIZE_T_MAX / sizeof(type)) ? NULL :	\
 	(type *) PyMem_REALLOC((p), (n) * sizeof(type)) )
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* PyMem{Del,DEL} are left over from ancient days, and shouldn't be used
  * anymore.  They're just confusing aliases for PyMem_{Free,FREE} now.
  */
-<<<<<<< HEAD
-#define PyMem_Del               PyMem_Free
-#define PyMem_DEL               PyMem_FREE
-=======
 #define PyMem_Del		PyMem_Free
 #define PyMem_DEL		PyMem_FREE
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 #ifndef Py_LIMITED_API
 typedef enum {
@@ -268,11 +215,7 @@ PyAPI_FUNC(void) PyMem_SetAllocator(PyMemAllocatorDomain domain,
    - PyObject_Malloc(), PyObject_Realloc() and PyObject_Free()
 
    Newly allocated memory is filled with the byte 0xCB, freed memory is filled
-<<<<<<< HEAD
-   with the byte 0xDB. Additional checks:
-=======
    with the byte 0xDB. Additionnal checks:
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
    - detect API violations, ex: PyObject_Free() called on a buffer allocated
      by PyMem_Malloc()
@@ -283,18 +226,6 @@ PyAPI_FUNC(void) PyMem_SetAllocator(PyMemAllocatorDomain domain,
 PyAPI_FUNC(void) PyMem_SetupDebugHooks(void);
 #endif
 
-<<<<<<< HEAD
-#ifdef Py_BUILD_CORE
-/* Set the memory allocator of the specified domain to the default.
-   Save the old allocator into *old_alloc if it's non-NULL.
-   Return on success, or return -1 if the domain is unknown. */
-PyAPI_FUNC(int) _PyMem_SetDefaultAllocator(
-    PyMemAllocatorDomain domain,
-    PyMemAllocatorEx *old_alloc);
-#endif
-
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #ifdef __cplusplus
 }
 #endif

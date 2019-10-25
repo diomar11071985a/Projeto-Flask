@@ -56,11 +56,7 @@ must use the platform malloc heap(s), or shared memory, or C++ local storage or
 operator new), you must first allocate the object with your custom allocator,
 then pass its pointer to PyObject_{Init, InitVar} for filling in its Python-
 specific fields:  reference count, type pointer, possibly others.  You should
-<<<<<<< HEAD
-be aware that Python has no control over these objects because they don't
-=======
 be aware that Python no control over these objects because they don't
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 cooperate with the Python memory manager.  Such objects may not be eligible
 for automatic garbage collection and you have to make sure that they are
 released accordingly whenever their destructor gets called (cf. the specific
@@ -113,11 +109,7 @@ PyAPI_FUNC(Py_ssize_t) _Py_GetAllocatedBlocks(void);
 /* Macros */
 #ifdef WITH_PYMALLOC
 #ifndef Py_LIMITED_API
-<<<<<<< HEAD
-PyAPI_FUNC(int) _PyObject_DebugMallocStats(FILE *out);
-=======
 PyAPI_FUNC(void) _PyObject_DebugMallocStats(FILE *out);
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif /* #ifndef Py_LIMITED_API */
 #endif
 
@@ -263,15 +255,7 @@ typedef union _gc_head {
         union _gc_head *gc_prev;
         Py_ssize_t gc_refs;
     } gc;
-<<<<<<< HEAD
-    long double dummy;  /* force worst-case alignment */
-    // malloc returns memory block aligned for any built-in types and
-    // long double is the largest standard C type.
-    // On amd64 linux, long double requires 16 byte alignment.
-    // See bpo-27987 for more discussion.
-=======
     double dummy;  /* force worst-case alignment */
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 } PyGC_Head;
 
 extern PyGC_Head *_PyGC_generation0;

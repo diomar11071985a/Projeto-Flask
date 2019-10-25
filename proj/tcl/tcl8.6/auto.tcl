@@ -122,17 +122,11 @@ proc tcl_findLibrary {basename version patch initScript enVarName varName} {
     # uniquify $dirs in order
     array set seen {}
     foreach i $dirs {
-<<<<<<< HEAD
-	# Make sure $i is unique under normalization. Avoid repeated [source].
-	if {[interp issafe]} {
-	    # Safe interps have no [file normalize].
-=======
 	# Take note that the [file normalize] below has been noted to cause
 	# difficulties for the freewrap utility.  See Bug 1072136.  Until
 	# freewrap resolves the matter, one might work around the problem by
 	# disabling that branch.
 	if {[interp issafe]} {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    set norm $i
 	} else {
 	    set norm [file normalize $i]
@@ -141,14 +135,10 @@ proc tcl_findLibrary {basename version patch initScript enVarName varName} {
 	    continue
 	}
 	set seen($norm) {}
-<<<<<<< HEAD
-
-=======
 	lappend uniqdirs $i
     }
     set dirs $uniqdirs
     foreach i $dirs {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
         set the_library $i
         set file [file join $i $initScript]
 
@@ -218,11 +208,7 @@ proc auto_mkindex {dir args} {
     }
 
     auto_mkindex_parser::init
-<<<<<<< HEAD
-    foreach file [lsort [glob -- {*}$args]] {
-=======
     foreach file [glob -- {*}$args] {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	try {
 	    append index [auto_mkindex_parser::mkindex $file]
 	} on error {msg opts} {
@@ -255,11 +241,7 @@ proc auto_mkindex_old {dir args} {
     if {![llength $args]} {
 	set args *.tcl
     }
-<<<<<<< HEAD
-    foreach file [lsort [glob -- {*}$args]] {
-=======
     foreach file [glob -- {*}$args] {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	set f ""
 	set error [catch {
 	    set f [open $file]

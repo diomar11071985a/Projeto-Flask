@@ -44,7 +44,11 @@ import shutil as _shutil
 import errno as _errno
 from random import Random as _Random
 import weakref as _weakref
-import _thread
+
+try:
+    import _thread
+except ImportError:
+    import _dummy_thread as _thread
 _allocate_lock = _thread.allocate_lock
 
 _text_openflags = _os.O_RDWR | _os.O_CREAT | _os.O_EXCL
@@ -132,7 +136,7 @@ def _sanitize_params(prefix, suffix, dir):
 class _RandomNameSequence:
     """An instance of _RandomNameSequence generates an endless
     sequence of unpredictable strings which can safely be incorporated
-    into file names.  Each string is eight characters long.  Multiple
+    into file names.  Each string is six characters long.  Multiple
     threads can safely use the same instance at the same time.
 
     _RandomNameSequence is an iterator."""
@@ -169,9 +173,7 @@ def _candidate_tempdir_list():
 
     # Failing that, try OS-specific locations.
     if _os.name == 'nt':
-        dirlist.extend([ _os.path.expanduser(r'~\AppData\Local\Temp'),
-                         _os.path.expandvars(r'%SYSTEMROOT%\Temp'),
-                         r'c:\temp', r'c:\tmp', r'\temp', r'\tmp' ])
+        dirlist.extend([ r'c:\temp', r'c:\tmp', r'\temp', r'\tmp' ])
     else:
         dirlist.extend([ '/tmp', '/var/tmp', '/usr/tmp' ])
 

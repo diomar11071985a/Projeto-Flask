@@ -10,11 +10,7 @@ extern "C" {
 /*
 Another generally useful object type is a tuple of object pointers.
 For Python, this is an immutable type.  C code can change the tuple items
-<<<<<<< HEAD
-(but not their number), and even use tuples as general-purpose arrays of
-=======
 (but not their number), and even use tuples are general-purpose arrays of
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 object references, but in general only brand new tuples should be mutated,
 not ones that might already have been exposed to Python code.
 
@@ -60,11 +56,7 @@ PyAPI_FUNC(void) _PyTuple_MaybeUntrack(PyObject *);
 /* Macro, trading safety for speed */
 #ifndef Py_LIMITED_API
 #define PyTuple_GET_ITEM(op, i) (((PyTupleObject *)(op))->ob_item[i])
-<<<<<<< HEAD
-#define PyTuple_GET_SIZE(op)    (assert(PyTuple_Check(op)),Py_SIZE(op))
-=======
 #define PyTuple_GET_SIZE(op)    Py_SIZE(op)
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 /* Macro, *only* to be used to fill in brand new tuples */
 #define PyTuple_SET_ITEM(op, i, v) (((PyTupleObject *)(op))->ob_item[i] = v)

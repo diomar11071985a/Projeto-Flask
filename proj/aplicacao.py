@@ -1,33 +1,24 @@
 from flask import Flask, render_template
 
-app = Flask (__name__)
+app = Flask (__name__) 
 
-<<<<<<< HEAD
 @app.route('/index')
-
 def index():
     return render_template("index.html")
 
 @app.route('/inovacao')
-
 def vestibular():
     return render_template("inovacao.html")
 
-
 @app.route('/listacursos')
-
 def listcur():
     return render_template("listacursos.html")
 
 @app.route('/Noticiasfaculdade')
-
-def listcur():
+def noticiasfaculdade():
     return render_template("Noticiasfaculdade.html")
 
-app.run()
-=======
 @app.route('/administracao')
-
 def administracao():
     return render_template("administracao.html")
 
@@ -88,4 +79,3 @@ def sistemas():
 
 
 app.run()
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65

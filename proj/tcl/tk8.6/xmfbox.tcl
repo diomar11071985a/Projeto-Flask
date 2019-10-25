@@ -156,11 +156,7 @@ proc ::tk::MotifFDialog_FileTypes {w} {
     # The filetypes radiobuttons
     # set data(fileType) $data(-defaulttype)
     # Default type to first entry
-<<<<<<< HEAD
-    set initialTypeName [lindex $data(origfiletypes) 0 0]
-=======
     set initialTypeName [lindex $data(-filetypes) 0 0]
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     if {$data(-typevariable) ne ""} {
 	upvar #0 $data(-typevariable) typeVariable
 	if {[info exists typeVariable]} {
@@ -169,11 +165,7 @@ proc ::tk::MotifFDialog_FileTypes {w} {
     }
     set ix 0
     set data(fileType) 0
-<<<<<<< HEAD
-    foreach fltr $data(origfiletypes) {
-=======
     foreach fltr $data(-filetypes) {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	set fname [lindex $fltr 0]
 	if {[string first $initialTypeName $fname] == 0} {
 	    set data(fileType) $ix
@@ -193,11 +185,7 @@ proc ::tk::MotifFDialog_FileTypes {w} {
     set cnt 0
     if {$data(-filetypes) ne {}} {
 	foreach type $data(-filetypes) {
-<<<<<<< HEAD
-	    set title  [lindex $type 0]
-=======
 	    set title  [lindex [lindex $type 0] 0]
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    set filter [lindex $type 1]
 	    radiobutton $f.b$cnt \
 		-text $title \
@@ -311,10 +299,6 @@ proc ::tk::MotifFDialog_Config {dataName type argList} {
     #    file dialog, but we check for validity of the value to make sure
     #    the application code also runs fine with the TK file dialog.
     #
-<<<<<<< HEAD
-    set data(origfiletypes) $data(-filetypes)
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     set data(-filetypes) [::tk::FDGetFileTypes $data(-filetypes)]
 
     if {![info exists data(filter)]} {
@@ -886,11 +870,7 @@ proc ::tk::MotifFDialog_ActivateSEnt {w} {
     if {[info exists data(-typevariable)] && $data(-typevariable) ne ""
 	    && [info exists data(-filetypes)] && $data(-filetypes) ne ""} {
 	upvar #0 $data(-typevariable) typeVariable
-<<<<<<< HEAD
-	set typeVariable [lindex $data(origfiletypes) $data(fileType) 0]
-=======
 	set typeVariable [lindex $data(-filetypes) $data(fileType) 0]
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     }
 
     if {$data(-multiple) != 0} {

@@ -14,11 +14,7 @@
 # tk::Priv elements used in this file:
 #
 # afterId -		Token returned by "after" for autoscanning.
-<<<<<<< HEAD
-# listboxPrev -	The last element to be selected or deselected
-=======
 # listboxPrev -		The last element to be selected or deselected
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #			during a selection operation.
 # listboxSelection -	All of the items that were selected before the
 #			current selection operation (such as a mouse
@@ -210,11 +206,7 @@ if {"x11" eq [tk windowingsystem]} {
     # Support for mousewheels on Linux/Unix commonly comes through mapping
     # the wheel to the extended buttons.  If you have a mousewheel, find
     # Linux configuration info at:
-<<<<<<< HEAD
-    #	http://linuxreviews.org/howtos/xfree/mouse/
-=======
     #	http://www.inria.fr/koala/colas/mouse-wheel-scroll/
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     bind Listbox <4> {
 	if {!$tk_strictMotif} {
 	    %W yview scroll -5 units

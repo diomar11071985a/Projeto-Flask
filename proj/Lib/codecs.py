@@ -5,10 +5,9 @@ Written by Marc-Andre Lemburg (mal@lemburg.com).
 
 (c) Copyright CNRI, All Rights Reserved. NO WARRANTY.
 
-"""
+"""#"
 
-import builtins
-import sys
+import builtins, sys
 
 ### Registry and builtin stateless codec functions
 
@@ -480,16 +479,14 @@ class StreamReader(Codec):
             self.charbuffer = self._empty_charbuffer.join(self.linebuffer)
             self.linebuffer = None
 
-        if chars < 0:
-            # For compatibility with other read() methods that take a
-            # single argument
-            chars = size
-
         # read until we get the required number of characters (if available)
         while True:
             # can the request be satisfied from the character buffer?
             if chars >= 0:
                 if len(self.charbuffer) >= chars:
+                    break
+            elif size >= 0:
+                if len(self.charbuffer) >= size:
                     break
             # we need more data
             if size < 0:
@@ -742,7 +739,7 @@ class StreamReaderWriter:
         """
         return getattr(self.stream, name)
 
-    # these are needed to make "with StreamReaderWriter(...)" work properly
+    # these are needed to make "with codecs.open(...)" work properly
 
     def __enter__(self):
         return self
@@ -838,7 +835,7 @@ class StreamRecoder:
 
     def writelines(self, list):
 
-        data = b''.join(list)
+        data = ''.join(list)
         data, bytesdecoded = self.decode(data, self.errors)
         return self.writer.write(data)
 
@@ -846,12 +843,6 @@ class StreamRecoder:
 
         self.reader.reset()
         self.writer.reset()
-
-    def seek(self, offset, whence=0):
-        # Seeks must be propagated to both the readers and writers
-        # as they might need to reset their internal buffers.
-        self.reader.seek(offset, whence)
-        self.writer.seek(offset, whence)
 
     def __getattr__(self, name,
                     getattr=getattr):

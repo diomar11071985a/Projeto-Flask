@@ -15,10 +15,6 @@ namespace eval ttk::theme::classic {
 	-selectfg	"#000000"
 	-disabledfg	"#a3a3a3"
 	-indicator	"#b03060"
-<<<<<<< HEAD
-	-altindicator	"#b05e5e"
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     }
 
     ttk::style theme settings classic {
@@ -53,29 +49,15 @@ namespace eval ttk::theme::classic {
 	ttk::style configure TCheckbutton -indicatorrelief raised
 	ttk::style map TCheckbutton \
 	    -indicatorcolor [list \
-<<<<<<< HEAD
-		    pressed $colors(-frame) \
-		    alternate $colors(-altindicator) \
-		    selected $colors(-indicator)] \
-	    -indicatorrelief {alternate raised  selected sunken  pressed sunken} \
-=======
 		pressed $colors(-frame)  selected $colors(-indicator)] \
 	    -indicatorrelief {selected sunken  pressed sunken} \
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    ;
 
 	ttk::style configure TRadiobutton -indicatorrelief raised
 	ttk::style map TRadiobutton \
 	    -indicatorcolor [list \
-<<<<<<< HEAD
-		    pressed $colors(-frame) \
-		    alternate $colors(-altindicator) \
-		    selected $colors(-indicator)] \
-	    -indicatorrelief {alternate raised  selected sunken  pressed sunken} \
-=======
 		pressed $colors(-frame)  selected $colors(-indicator)] \
 	    -indicatorrelief {selected sunken  pressed sunken} \
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    ;
 
 	ttk::style configure TMenubutton -relief raised -padding "3m 1m"
@@ -111,17 +93,8 @@ namespace eval ttk::theme::classic {
 	ttk::style configure Heading -font TkHeadingFont -relief raised
 	ttk::style configure Treeview -background $colors(-window)
 	ttk::style map Treeview \
-<<<<<<< HEAD
-	    -background [list disabled $colors(-frame)\
-				{!disabled !selected} $colors(-window) \
-				selected $colors(-selectbg)] \
-	    -foreground [list disabled $colors(-disabledfg) \
-				{!disabled !selected} black \
-				selected $colors(-selectfg)]
-=======
 	    -background [list selected $colors(-selectbg)] \
 	    -foreground [list selected $colors(-selectfg)] ;
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 	#
 	# Toolbar buttons:

@@ -64,11 +64,7 @@ typedef struct {
     PyObject *weakreflist;      /* List of weak references */
 } PySetObject;
 
-<<<<<<< HEAD
-#define PySet_GET_SIZE(so) (assert(PyAnySet_Check(so)),(((PySetObject *)(so))->used))
-=======
 #define PySet_GET_SIZE(so) (((PySetObject *)(so))->used)
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 PyAPI_DATA(PyObject *) _PySet_Dummy;
 

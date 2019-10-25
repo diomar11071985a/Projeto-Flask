@@ -463,11 +463,7 @@ if {"x11" eq [tk windowingsystem]} {
     # Support for mousewheels on Linux/Unix commonly comes through mapping
     # the wheel to the extended buttons.  If you have a mousewheel, find
     # Linux configuration info at:
-<<<<<<< HEAD
-    #	http://linuxreviews.org/howtos/xfree/mouse/
-=======
     #	http://www.inria.fr/koala/colas/mouse-wheel-scroll/
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     bind Text <4> {
 	if {!$tk_strictMotif} {
 	    %W yview scroll -50 pixels
@@ -772,12 +768,6 @@ proc ::tk::TextKeySelect {w new} {
 	}
 	$w mark set $anchorname insert
     } else {
-<<<<<<< HEAD
-        if {[catch {$w index $anchorname}]} {
-            $w mark set $anchorname insert
-        }
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	if {[$w compare $new < $anchorname]} {
 	    set first $new
 	    set last $anchorname
@@ -1065,21 +1055,13 @@ proc ::tk_textCut w {
         # make <<Cut>> an atomic operation on the Undo stack,
         # i.e. separate it from other delete operations on either side
 	set oldSeparator [$w cget -autoseparators]
-<<<<<<< HEAD
-	if {([$w cget -state] eq "normal") && $oldSeparator} {
-=======
 	if {$oldSeparator} {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    $w edit separator
 	}
 	clipboard clear -displayof $w
 	clipboard append -displayof $w $data
 	$w delete sel.first sel.last
-<<<<<<< HEAD
-	if {([$w cget -state] eq "normal") && $oldSeparator} {
-=======
 	if {$oldSeparator} {
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	    $w edit separator
 	}
     }

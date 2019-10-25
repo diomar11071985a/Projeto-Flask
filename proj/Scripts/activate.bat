@@ -1,10 +1,6 @@
 @echo off
 
-<<<<<<< HEAD
-set "VIRTUAL_ENV=C:\Users\92038396.CLAROBR\Documents\Projeto-Flask\proj"
-=======
-set "VIRTUAL_ENV=C:\Users\1901124\Documents\Projeto-Flask\proj"
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
+set "VIRTUAL_ENV=C:\Users\1901107\Documents\Projeto-Flask\proj"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

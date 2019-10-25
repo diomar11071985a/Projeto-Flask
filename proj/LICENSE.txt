@@ -13,20 +13,12 @@ software.
 
 In May 2000, Guido and the Python core development team moved to
 BeOpen.com to form the BeOpen PythonLabs team.  In October of the same
-<<<<<<< HEAD
-year, the PythonLabs team moved to Digital Creations, which became
-Zope Corporation.  In 2001, the Python Software Foundation (PSF, see
-https://www.python.org/psf/) was formed, a non-profit organization
-created specifically to own Python-related Intellectual Property.
-Zope Corporation was a sponsoring member of the PSF.
-=======
 year, the PythonLabs team moved to Digital Creations (now Zope
 Corporation, see http://www.zope.com).  In 2001, the Python Software
 Foundation (PSF, see http://www.python.org/psf/) was formed, a
 non-profit organization created specifically to own Python-related
 Intellectual Property.  Zope Corporation is a sponsoring member of
 the PSF.
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 All Python releases are Open Source (see http://www.opensource.org for
 the Open Source Definition).  Historically, most, but not all, Python
@@ -82,15 +74,9 @@ analyze, test, perform and/or display publicly, prepare derivative works,
 distribute, and otherwise use Python alone or in any derivative version,
 provided, however, that PSF's License Agreement and PSF's notice of copyright,
 i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
-<<<<<<< HEAD
-2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 Python Software Foundation;
-All Rights Reserved" are retained in Python alone or in any derivative version
-prepared by Licensee.
-=======
 2011, 2012, 2013, 2014, 2015, 2016, 2017 Python Software Foundation; All Rights
 Reserved" are retained in Python alone or in any derivative version prepared by
 Licensee.
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
 3. In the event Licensee prepares a derivative work that is based on
 or incorporates Python or any part thereof, and wants to make
@@ -357,38 +343,24 @@ bzip2/libbzip2 version 1.0.6 of 6 September 2010
   LICENSE ISSUES
   ==============
 
-<<<<<<< HEAD
-  The OpenSSL toolkit stays under a double license, i.e. both the conditions of
-  the OpenSSL License and the original SSLeay license apply to the toolkit.
-  See below for the actual license texts.
-=======
   The OpenSSL toolkit stays under a dual license, i.e. both the conditions of
   the OpenSSL License and the original SSLeay license apply to the toolkit.
   See below for the actual license texts. Actually both licenses are BSD-style
   Open Source licenses. In case of any license issues related to OpenSSL
   please contact openssl-core@openssl.org.
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 
   OpenSSL License
   ---------------
 
 /* ====================================================================
-<<<<<<< HEAD
- * Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
-=======
  * Copyright (c) 1998-2016 The OpenSSL Project.  All rights reserved.
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
-<<<<<<< HEAD
- *    notice, this list of conditions and the following disclaimer.
-=======
  *    notice, this list of conditions and the following disclaimer. 
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -443,33 +415,21 @@ bzip2/libbzip2 version 1.0.6 of 6 September 2010
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
-<<<<<<< HEAD
- *
-=======
  * 
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
-<<<<<<< HEAD
- *
-=======
  * 
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
-<<<<<<< HEAD
- *
-=======
  * 
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -484,17 +444,10 @@ bzip2/libbzip2 version 1.0.6 of 6 September 2010
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
-<<<<<<< HEAD
- * 4. If you include any Windows specific code (or a derivative thereof) from
- *    the apps directory (application code) you must include an acknowledgement:
- *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- *
-=======
  * 4. If you include any Windows specific code (or a derivative thereof) from 
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
  * 
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -506,11 +459,7 @@ bzip2/libbzip2 version 1.0.6 of 6 September 2010
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
-<<<<<<< HEAD
- *
-=======
  * 
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence

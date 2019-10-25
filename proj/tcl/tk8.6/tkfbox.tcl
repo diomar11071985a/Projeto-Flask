@@ -310,10 +310,6 @@ proc ::tk::dialog::file::Config {dataName type argList} {
 
     # 5. Parse the -filetypes option
     #
-<<<<<<< HEAD
-    set data(origfiletypes) $data(-filetypes)
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     set data(-filetypes) [::tk::FDGetFileTypes $data(-filetypes)]
 
     if {![winfo exists $data(-parent)]} {
@@ -1123,13 +1119,7 @@ proc ::tk::dialog::file::Done {w {selectFilePath ""}} {
 	    && [info exists data(filterType)] && $data(filterType) ne ""
 	} then {
 	    upvar #0 $data(-typevariable) typeVariable
-<<<<<<< HEAD
-	    set typeVariable [lindex $data(origfiletypes) \
-	            [lsearch -exact $data(-filetypes) $data(filterType)] 0]
-
-=======
 	    set typeVariable [lindex $data(filterType) 0]
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 	}
     }
     bind $data(okBtn) <Destroy> {}

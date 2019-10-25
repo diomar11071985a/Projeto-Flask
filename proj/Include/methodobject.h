@@ -16,19 +16,10 @@ PyAPI_DATA(PyTypeObject) PyCFunction_Type;
 #define PyCFunction_Check(op) (Py_TYPE(op) == &PyCFunction_Type)
 
 typedef PyObject *(*PyCFunction)(PyObject *, PyObject *);
-<<<<<<< HEAD
-typedef PyObject *(*_PyCFunctionFast) (PyObject *, PyObject *const *, Py_ssize_t);
-typedef PyObject *(*PyCFunctionWithKeywords)(PyObject *, PyObject *,
-                                             PyObject *);
-typedef PyObject *(*_PyCFunctionFastWithKeywords) (PyObject *,
-                                                   PyObject *const *, Py_ssize_t,
-                                                   PyObject *);
-=======
 typedef PyObject *(*_PyCFunctionFast) (PyObject *self, PyObject **args,
                                        Py_ssize_t nargs, PyObject *kwnames);
 typedef PyObject *(*PyCFunctionWithKeywords)(PyObject *, PyObject *,
                                              PyObject *);
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 typedef PyObject *(*PyNoArgsFunction)(PyObject *);
 
 PyAPI_FUNC(PyCFunction) PyCFunction_GetFunction(PyObject *);
@@ -50,20 +41,12 @@ PyAPI_FUNC(PyObject *) PyCFunction_Call(PyObject *, PyObject *, PyObject *);
 
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(PyObject *) _PyCFunction_FastCallDict(PyObject *func,
-<<<<<<< HEAD
-    PyObject *const *args,
-=======
     PyObject **args,
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     Py_ssize_t nargs,
     PyObject *kwargs);
 
 PyAPI_FUNC(PyObject *) _PyCFunction_FastCallKeywords(PyObject *func,
-<<<<<<< HEAD
-    PyObject *const *stack,
-=======
     PyObject **stack,
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
     Py_ssize_t nargs,
     PyObject *kwnames);
 #endif
@@ -104,20 +87,7 @@ PyAPI_FUNC(PyObject *) PyCFunction_NewEx(PyMethodDef *, PyObject *,
 
 #ifndef Py_LIMITED_API
 #define METH_FASTCALL  0x0080
-<<<<<<< HEAD
-#endif
 
-/* This bit is preserved for Stackless Python */
-#ifdef STACKLESS
-#define METH_STACKLESS 0x0100
-#else
-#define METH_STACKLESS 0x0000
-#endif
-
-#ifndef Py_LIMITED_API
-=======
-
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 typedef struct {
     PyObject_HEAD
     PyMethodDef *m_ml; /* Description of the C function to call */
@@ -125,23 +95,6 @@ typedef struct {
     PyObject    *m_module; /* The __module__ attribute, can be anything */
     PyObject    *m_weakreflist; /* List of weak references */
 } PyCFunctionObject;
-<<<<<<< HEAD
-
-PyAPI_FUNC(PyObject *) _PyMethodDef_RawFastCallDict(
-    PyMethodDef *method,
-    PyObject *self,
-    PyObject *const *args,
-    Py_ssize_t nargs,
-    PyObject *kwargs);
-
-PyAPI_FUNC(PyObject *) _PyMethodDef_RawFastCallKeywords(
-    PyMethodDef *method,
-    PyObject *self,
-    PyObject *const *args,
-    Py_ssize_t nargs,
-    PyObject *kwnames);
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 #endif
 
 PyAPI_FUNC(int) PyCFunction_ClearFreeList(void);

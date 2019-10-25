@@ -108,21 +108,12 @@ PyAPI_FUNC(Py_ssize_t) PyDict_Size(PyObject *mp);
 PyAPI_FUNC(PyObject *) PyDict_Copy(PyObject *mp);
 PyAPI_FUNC(int) PyDict_Contains(PyObject *mp, PyObject *key);
 #ifndef Py_LIMITED_API
-<<<<<<< HEAD
-/* Get the number of items of a dictionary. */
-#define PyDict_GET_SIZE(mp)  (assert(PyDict_Check(mp)),((PyDictObject *)mp)->ma_used)
-=======
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(int) _PyDict_Contains(PyObject *mp, PyObject *key, Py_hash_t hash);
 PyAPI_FUNC(PyObject *) _PyDict_NewPresized(Py_ssize_t minused);
 PyAPI_FUNC(void) _PyDict_MaybeUntrack(PyObject *mp);
 PyAPI_FUNC(int) _PyDict_HasOnlyStringKeys(PyObject *mp);
 Py_ssize_t _PyDict_KeysSize(PyDictKeysObject *keys);
-<<<<<<< HEAD
-PyAPI_FUNC(Py_ssize_t) _PyDict_SizeOf(PyDictObject *);
-=======
 Py_ssize_t _PyDict_SizeOf(PyDictObject *);
->>>>>>> 73921da00deaf52c46c591e7cf1f6c7e6f6daa65
 PyAPI_FUNC(PyObject *) _PyDict_Pop(PyObject *, PyObject *, PyObject *);
 PyObject *_PyDict_Pop_KnownHash(PyObject *, PyObject *, Py_hash_t, PyObject *);
 PyObject *_PyDict_FromKeys(PyObject *, PyObject *, PyObject *);

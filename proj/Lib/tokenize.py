@@ -38,10 +38,17 @@ cookie_re = re.compile(r'^[ \t\f]*#.*?coding[:=][ \t]*([-\w.]+)', re.ASCII)
 blank_re = re.compile(br'^[ \t\f]*(?:[#\r\n]|$)', re.ASCII)
 
 import token
-__all__ = token.__all__ + ["tokenize", "detect_encoding",
-                           "untokenize", "TokenInfo"]
+__all__ = token.__all__ + ["COMMENT", "tokenize", "detect_encoding",
+                           "NL", "untokenize", "ENCODING", "TokenInfo"]
 del token
 
+COMMENT = N_TOKENS
+tok_name[COMMENT] = 'COMMENT'
+NL = N_TOKENS + 1
+tok_name[NL] = 'NL'
+ENCODING = N_TOKENS + 2
+tok_name[ENCODING] = 'ENCODING'
+N_TOKENS += 3
 EXACT_TOKEN_TYPES = {
     '(':   LPAR,
     ')':   RPAR,
@@ -79,14 +86,12 @@ EXACT_TOKEN_TYPES = {
     '%=':  PERCENTEQUAL,
     '&=':  AMPEREQUAL,
     '|=':  VBAREQUAL,
-    '^=':  CIRCUMFLEXEQUAL,
+    '^=': CIRCUMFLEXEQUAL,
     '<<=': LEFTSHIFTEQUAL,
     '>>=': RIGHTSHIFTEQUAL,
     '**=': DOUBLESTAREQUAL,
     '//':  DOUBLESLASH,
     '//=': DOUBLESLASHEQUAL,
-    '...': ELLIPSIS,
-    '->':  RARROW,
     '@':   AT,
     '@=':  ATEQUAL,
 }
@@ -131,11 +136,11 @@ Number = group(Imagnumber, Floatnumber, Intnumber)
 # Return the empty string, plus all of the valid string prefixes.
 def _all_string_prefixes():
     # The valid string prefixes. Only contain the lower case versions,
-    #  and don't contain any permutations (include 'fr', but not
+    #  and don't contain any permuations (include 'fr', but not
     #  'rf'). The various permutations will be generated.
     _valid_string_prefixes = ['b', 'r', 'u', 'f', 'br', 'fr']
     # if we add binary f-strings, add: ['fb', 'fbr']
-    result = {''}
+    result = set([''])
     for prefix in _valid_string_prefixes:
         for t in _itertools.permutations(prefix):
             # create a list with upper and lower versions of each
@@ -284,7 +289,7 @@ class Untokenizer:
                 self.encoding = tokval
                 continue
 
-            if toknum in (NAME, NUMBER):
+            if toknum in (NAME, NUMBER, ASYNC, AWAIT):
                 tokval += ' '
 
             # Insert a space between two consecutive strings
@@ -491,20 +496,19 @@ def _tokenize(readline, encoding):
     contline = None
     indents = [0]
 
+    # 'stashed' and 'async_*' are used for async/await parsing
+    stashed = None
+    async_def = False
+    async_def_indent = 0
+    async_def_nl = False
+
     if encoding is not None:
         if encoding == "utf-8-sig":
             # BOM will already have been stripped.
             encoding = "utf-8"
         yield TokenInfo(ENCODING, encoding, (0, 0), (0, 0), '')
-    last_line = b''
-    line = b''
-    while True:                                # loop over lines in stream
+    while True:             # loop over lines in stream
         try:
-            # We capture the value of the line variable here because
-            # readline uses the empty string '' to signal end of input,
-            # hence `line` itself will always be overwritten at the end
-            # of this loop.
-            last_line = line
             line = readline()
         except StopIteration:
             line = b''
@@ -554,11 +558,13 @@ def _tokenize(readline, encoding):
             if line[pos] in '#\r\n':           # skip comments or blank lines
                 if line[pos] == '#':
                     comment_token = line[pos:].rstrip('\r\n')
+                    nl_pos = pos + len(comment_token)
                     yield TokenInfo(COMMENT, comment_token,
                            (lnum, pos), (lnum, pos + len(comment_token)), line)
-                    pos += len(comment_token)
-
-                yield TokenInfo(NL, line[pos:],
+                    yield TokenInfo(NL, line[nl_pos:],
+                           (lnum, nl_pos), (lnum, len(line)), line)
+                else:
+                    yield TokenInfo((NL, COMMENT)[line[pos] == '#'], line[pos:],
                            (lnum, pos), (lnum, len(line)), line)
                 continue
 
@@ -572,7 +578,17 @@ def _tokenize(readline, encoding):
                         ("<tokenize>", lnum, pos, line))
                 indents = indents[:-1]
 
+                if async_def and async_def_indent >= indents[-1]:
+                    async_def = False
+                    async_def_nl = False
+                    async_def_indent = 0
+
                 yield TokenInfo(DEDENT, '', (lnum, pos), (lnum, pos), line)
+
+            if async_def and async_def_nl and async_def_indent >= indents[-1]:
+                async_def = False
+                async_def_nl = False
+                async_def_indent = 0
 
         else:                                  # continued statement
             if not line:
@@ -592,13 +608,21 @@ def _tokenize(readline, encoding):
                     (initial == '.' and token != '.' and token != '...')):
                     yield TokenInfo(NUMBER, token, spos, epos, line)
                 elif initial in '\r\n':
+                    if stashed:
+                        yield stashed
+                        stashed = None
                     if parenlev > 0:
                         yield TokenInfo(NL, token, spos, epos, line)
                     else:
                         yield TokenInfo(NEWLINE, token, spos, epos, line)
+                        if async_def:
+                            async_def_nl = True
 
                 elif initial == '#':
                     assert not token.endswith("\n")
+                    if stashed:
+                        yield stashed
+                        stashed = None
                     yield TokenInfo(COMMENT, token, spos, epos, line)
 
                 elif token in triple_quoted:
@@ -645,7 +669,36 @@ def _tokenize(readline, encoding):
                         yield TokenInfo(STRING, token, spos, epos, line)
 
                 elif initial.isidentifier():               # ordinary name
-                    yield TokenInfo(NAME, token, spos, epos, line)
+                    if token in ('async', 'await'):
+                        if async_def:
+                            yield TokenInfo(
+                                ASYNC if token == 'async' else AWAIT,
+                                token, spos, epos, line)
+                            continue
+
+                    tok = TokenInfo(NAME, token, spos, epos, line)
+                    if token == 'async' and not stashed:
+                        stashed = tok
+                        continue
+
+                    if token == 'def':
+                        if (stashed
+                                and stashed.type == NAME
+                                and stashed.string == 'async'):
+
+                            async_def = True
+                            async_def_indent = indents[-1]
+
+                            yield TokenInfo(ASYNC, stashed.string,
+                                            stashed.start, stashed.end,
+                                            stashed.line)
+                            stashed = None
+
+                    if stashed:
+                        yield stashed
+                        stashed = None
+
+                    yield tok
                 elif initial == '\\':                      # continued stmt
                     continued = 1
                 else:
@@ -653,15 +706,19 @@ def _tokenize(readline, encoding):
                         parenlev += 1
                     elif initial in ')]}':
                         parenlev -= 1
+                    if stashed:
+                        yield stashed
+                        stashed = None
                     yield TokenInfo(OP, token, spos, epos, line)
             else:
                 yield TokenInfo(ERRORTOKEN, line[pos],
                            (lnum, pos), (lnum, pos+1), line)
                 pos += 1
 
-    # Add an implicit NEWLINE if the input doesn't end in one
-    if last_line and last_line[-1] not in '\r\n':
-        yield TokenInfo(NEWLINE, '', (lnum - 1, len(last_line)), (lnum - 1, len(last_line) + 1), '')
+    if stashed:
+        yield stashed
+        stashed = None
+
     for indent in indents[1:]:                 # pop remaining indent levels
         yield TokenInfo(DEDENT, '', (lnum, 0), (lnum, 0), '')
     yield TokenInfo(ENDMARKER, '', (lnum, 0), (lnum, 0), '')
