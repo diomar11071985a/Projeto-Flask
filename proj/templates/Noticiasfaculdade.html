@@ -2,13 +2,10 @@
 <html lang='pt'>
     <head>
        <title>Novidades/Noticias</title>
-        
-       <link rel="stylesheet" 
-       href="{{url_for('static', filename='./montadoras.jpg')}}"
-        href="{{url_for('static', filename='./brasil.jpg.jpg')}}"
-        href="{{url_for('static', filename='./img.jpg')}}"
-        href="{{url_for('static', filename='./inteligenciaartificial.jpg.jpg')}}">
-    
+
+       <link rel="stylesheet"
+       href="{{url_for('static', filename='./main.css')}}">  
+            
     </head>    
         
     <body>
@@ -17,12 +14,12 @@
        <div align="center"><h1>Acompanhe as Novidades da Faculdade do mês de setembro!</h1></div>
        <div align="center"><h2>Principais Notícias:</h2></div>
     </br>
-       <div align="center"><img src= 'ultimasnoticias.jpg.jpg' width='80%' heigt='60%'/></div>
+       <div align="center"><img src= "{{url_for('static', filename='./ultimasnoticias.jpg')}}" width='80%' heigt='60%'/></div>
         
       </br>
        <div align="center"><p><h3>Faculdade cria o 1º curso superior de inteligência artificial do Brasil!</h3></div></pr>
        </br>
-         <div align="center"><img src= 'inteligenciaartificial.jpg.jpg' width='80%' heigt='60%'/></div>
+         <div align="center"><img src= "{{url_for('static', filename='./inteligenciaartificial.jpg')}}" width='80%' heigt='60%'/></div>
        </br>
       </br>
     A primeira turma terá 40 vagas disponíveis e os alunos ingressarão pelo SISU. Segundo professor, o curso formará os novos e futuros líderes da área. </br> </p>
@@ -40,7 +37,7 @@ O professor fala que mais de 30 países já possuem iniciativas do governo para 
 
     <p align="center"><b class="generica">Brasil melhora em ranking das melhores universidades do mundo!</center></b></p>
    </br>
-   <div align="center"><img src= 'brasil.jpg.jpg' width='90%' heigt='70%'/></div> 
+   <div align="center"><img src= "{{url_for('static', filename='./brasil.jpg')}}" width='90%' heigt='70%'/></div> 
 </br>
    <p>Mais uma vez a Universidade de Oxford ficou em primeiro lugar no ranking de melhores instituições de ensino superior, 
     divulgado pela revista Times Higher Education (THE). O ranqueamento, um dos mais respeitados do mundo, está na 16ª edição e analisa mais de 1.300 universidades em todo mundo.</p> 
@@ -71,7 +68,7 @@ O professor fala que mais de 30 países já possuem iniciativas do governo para 
       </p>
    </br>
 </br>
-   <div align="center"><img src= 'tecnologiadainformacao.jpg.jpg' width='85%' heigt='70%'/></div>
+   <div align="center"><img src= "{{url_for('static', filename='./tecnologiadainformacao.jpg')}}" width='85%' heigt='70%'/></div>
    </br>
    <div align="center"><p><b><h5>Tecnologia em análise e Desenvolvimento de Sistemas</h5></b></div></body></p> 
    
@@ -139,7 +136,7 @@ como é chamado o profissional formado na área, pode ser contratado para atuar 
 </br>
 </br>
 
-<div align="center"><img src= 'montadoras.jpg' width='85%' heigt='70%'/></div>
+<div align="center"><img src= "{{url_for('static', filename='./montadoras.jpg')}}" width='85%' heigt='70%'/></div>
 </br>
 </br>
 </br>

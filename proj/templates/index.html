@@ -4,10 +4,10 @@
     <meta charset='UTF-8'/>
     <title>Projeto Criação Site</title>
     <link rel="stylesheet"
-        href="{{url_for('static', filename='./homepage.css')}}"
-        href="{{url_for('static', filename='./main.css')}}"
-        href="{{url_for('static', filename='./img.jpg')}}"
-        href="{{url_for('static', filename='./vestibular.jpg')}}">
+            type="text/css"
+            href="{{url_for('static', filename='./homepage.css')}}"
+            href="{{url_for('static', filename='./main.css')}}"
+            href="{{url_for('static', filename='./img.jpg')}}">
 
 </head>
     <body>
@@ -21,10 +21,8 @@
            
                 <a class="generica" onclick="alert('Página indisponivel no momento')">Comunidade</a>==
             
-                <a class="generica" href="http://127.0.0.1:5000/Noticiasfaculdade">Notícias</a>==   
-                    
-                <a class="generica" onclick="alert('Página indisponivel no momento')">Comunidade</a>==
-            
+                <a class="generica" href="http://127.0.0.1:5000/noticiasfaculdade">Notícias</a>==   
+                        
                 <button class="bt" onclick="alert('Não disponivel para cadastro')">Cadastro</button>
             </li></br>
         </ul>       
@@ -34,7 +32,7 @@
     </br>
     </br>
     </br>
-        <img src="vestibular.jpg" width=38%% height=45%%>
+        <img src="{{url_for('static', filename='./vestibular.jpg')}}" width=38%% height=45%%>
     </body>
 </html>
 
